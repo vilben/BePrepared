@@ -8,8 +8,6 @@ const publicRoute = path.resolve(projectRoot + '/public');
 app.use('public', express.static(publicRoute));
 app.use('/', express.static(projectRoot));
 
-const fs = require('fs');
-const VisualRecognitionV3 = require('ibm-watson/visual-recognition/v3');
 const FoodRecognition = require(publicRoute + '/FoodRecognition');
 
 router.get('/', function(req, res, next) {
@@ -36,13 +34,9 @@ router.get('/checkFood', (req, res, next) =>{
     let pathToBanana = "http://www.pngplay.com/wp-content/uploads/1/Banana-PNG-Royalty-Free.png";
     let foodRecognition = new FoodRecognition();
     foodRecognition.checkFood(pathToBanana).then((data)=>{
-
-        console.log(data);
-
-
-
         res.send(data);
 
+        //Todo HACK
         let foodItemName = data.images[0]["classifiers"][0]["classes"][0]["class"];
 
         console.log(foodItemName);

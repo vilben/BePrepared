@@ -174,3 +174,364 @@ body {
 .textBox {
   border: 1px solid rgba(0, 0, 0, 0.15);
 }
+
+.btnNeutral {
+  background-color: rgba(81, 90, 90, 0.9);
+  color: white;
+  font-size: 15px;
+}
+.btnNeutral .span {
+  color: white;
+}
+.btnNeutral:hover {
+  /*background-color: rgba($value, .87);*/
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 13px 1px rgba(95, 109, 109, 0.7);
+          box-shadow: 0 0 13px 1px rgba(95, 109, 109, 0.7);
+}
+.btnNeutral.kpDisabled {
+  background-color: rgba(81, 90, 90, 0.38);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: not-allowed;
+  color: gray;
+}
+.btnNeutral.kpDisabled.mdi-light:before {
+  color: gray;
+}
+.btnNeutral.kpDisabled:hover {
+  /*background-color: rgba($value, .87);*/
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btnNeutral-inverted {
+  border: none;
+  color: rgba(81, 90, 90, 0.9);
+  font-size: 15px;
+  font-weight: bold;
+  /*.span {
+      color: white;
+  }*/
+}
+.btnNeutral-inverted:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+.btnNeutral-inverted.kpDisabled {
+  background-color: rgba(81, 90, 90, 0.38);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: not-allowed;
+}
+.btnNeutral-inverted.kpDisabled:hover {
+  /*background-color: rgba($value, .87);*/
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btnSuccess {
+  background-color: rgba(77, 162, 65, 0.9);
+  color: white;
+  font-size: 15px;
+}
+.btnSuccess .span {
+  color: white;
+}
+.btnSuccess:hover {
+  /*background-color: rgba($value, .87);*/
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 13px 1px rgba(95, 109, 109, 0.7);
+          box-shadow: 0 0 13px 1px rgba(95, 109, 109, 0.7);
+}
+.btnSuccess.kpDisabled {
+  background-color: rgba(77, 162, 65, 0.38);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: not-allowed;
+  color: gray;
+}
+.btnSuccess.kpDisabled.mdi-light:before {
+  color: gray;
+}
+.btnSuccess.kpDisabled:hover {
+  /*background-color: rgba($value, .87);*/
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btnSuccess-inverted {
+  border: none;
+  color: rgba(77, 162, 65, 0.9);
+  font-size: 15px;
+  font-weight: bold;
+  /*.span {
+      color: white;
+  }*/
+}
+.btnSuccess-inverted:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+.btnSuccess-inverted.kpDisabled {
+  background-color: rgba(77, 162, 65, 0.38);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: not-allowed;
+}
+.btnSuccess-inverted.kpDisabled:hover {
+  /*background-color: rgba($value, .87);*/
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btnWarning {
+  background-color: rgba(239, 190, 60, 0.9);
+  color: white;
+  font-size: 15px;
+}
+.btnWarning .span {
+  color: white;
+}
+.btnWarning:hover {
+  /*background-color: rgba($value, .87);*/
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 13px 1px rgba(95, 109, 109, 0.7);
+          box-shadow: 0 0 13px 1px rgba(95, 109, 109, 0.7);
+}
+.btnWarning.kpDisabled {
+  background-color: rgba(239, 190, 60, 0.38);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: not-allowed;
+  color: gray;
+}
+.btnWarning.kpDisabled.mdi-light:before {
+  color: gray;
+}
+.btnWarning.kpDisabled:hover {
+  /*background-color: rgba($value, .87);*/
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btnWarning-inverted {
+  border: none;
+  color: rgba(239, 190, 60, 0.9);
+  font-size: 15px;
+  font-weight: bold;
+  /*.span {
+      color: white;
+  }*/
+}
+.btnWarning-inverted:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+.btnWarning-inverted.kpDisabled {
+  background-color: rgba(239, 190, 60, 0.38);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: not-allowed;
+}
+.btnWarning-inverted.kpDisabled:hover {
+  /*background-color: rgba($value, .87);*/
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btnDanger {
+  background-color: rgba(211, 69, 69, 0.9);
+  color: white;
+  font-size: 15px;
+}
+.btnDanger .span {
+  color: white;
+}
+.btnDanger:hover {
+  /*background-color: rgba($value, .87);*/
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 13px 1px rgba(95, 109, 109, 0.7);
+          box-shadow: 0 0 13px 1px rgba(95, 109, 109, 0.7);
+}
+.btnDanger.kpDisabled {
+  background-color: rgba(211, 69, 69, 0.38);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: not-allowed;
+  color: gray;
+}
+.btnDanger.kpDisabled.mdi-light:before {
+  color: gray;
+}
+.btnDanger.kpDisabled:hover {
+  /*background-color: rgba($value, .87);*/
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btnDanger-inverted {
+  border: none;
+  color: rgba(211, 69, 69, 0.9);
+  font-size: 15px;
+  font-weight: bold;
+  /*.span {
+      color: white;
+  }*/
+}
+.btnDanger-inverted:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+.btnDanger-inverted.kpDisabled {
+  background-color: rgba(211, 69, 69, 0.38);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: not-allowed;
+}
+.btnDanger-inverted.kpDisabled:hover {
+  /*background-color: rgba($value, .87);*/
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btnCreate {
+  background-color: rgba(59, 107, 148, 0.9);
+  color: white;
+  font-size: 15px;
+}
+.btnCreate .span {
+  color: white;
+}
+.btnCreate:hover {
+  /*background-color: rgba($value, .87);*/
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 13px 1px rgba(95, 109, 109, 0.7);
+          box-shadow: 0 0 13px 1px rgba(95, 109, 109, 0.7);
+}
+.btnCreate.kpDisabled {
+  background-color: rgba(59, 107, 148, 0.38);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: not-allowed;
+  color: gray;
+}
+.btnCreate.kpDisabled.mdi-light:before {
+  color: gray;
+}
+.btnCreate.kpDisabled:hover {
+  /*background-color: rgba($value, .87);*/
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btnCreate-inverted {
+  border: none;
+  color: rgba(59, 107, 148, 0.9);
+  font-size: 15px;
+  font-weight: bold;
+  /*.span {
+      color: white;
+  }*/
+}
+.btnCreate-inverted:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+.btnCreate-inverted.kpDisabled {
+  background-color: rgba(59, 107, 148, 0.38);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: not-allowed;
+}
+.btnCreate-inverted.kpDisabled:hover {
+  /*background-color: rgba($value, .87);*/
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btnStrongWarning {
+  background-color: rgba(255, 165, 0, 0.9);
+  color: white;
+  font-size: 15px;
+}
+.btnStrongWarning .span {
+  color: white;
+}
+.btnStrongWarning:hover {
+  /*background-color: rgba($value, .87);*/
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 13px 1px rgba(95, 109, 109, 0.7);
+          box-shadow: 0 0 13px 1px rgba(95, 109, 109, 0.7);
+}
+.btnStrongWarning.kpDisabled {
+  background-color: rgba(255, 165, 0, 0.38);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: not-allowed;
+  color: gray;
+}
+.btnStrongWarning.kpDisabled.mdi-light:before {
+  color: gray;
+}
+.btnStrongWarning.kpDisabled:hover {
+  /*background-color: rgba($value, .87);*/
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btnStrongWarning-inverted {
+  border: none;
+  color: rgba(255, 165, 0, 0.9);
+  font-size: 15px;
+  font-weight: bold;
+  /*.span {
+      color: white;
+  }*/
+}
+.btnStrongWarning-inverted:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+.btnStrongWarning-inverted.kpDisabled {
+  background-color: rgba(255, 165, 0, 0.38);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: not-allowed;
+}
+.btnStrongWarning-inverted.kpDisabled:hover {
+  /*background-color: rgba($value, .87);*/
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.mdi-19px.mdi-set, .mdi-19px.mdi:before {
+  font-size: 19px;
+  margin: 1px;
+}
+
+.inRow {
+  font-size: 14px;
+  padding: 4px;
+}
+
+.iconButton {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  min-height: 21px;
+  padding: 2px 3px 2px 3px;
+  /*padding: 7px 4px 4px 4px;*/
+  text-decoration: none;
+  font-weight: normal;
+  margin: 1px;
+  outline: 0 none;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  /*&:hover {
+      &:before {
+          -webkit-animation: mdi-spin 0.4s 1 linear;
+          -moz-animation: mdi-spin 0.4s 1 linear;
+          -o-animation: mdi-spin 0.4s 1 linear;
+          animation: mdi-spin 0.4s 1 linear;
+      }
+  }*/
+}
+.iconButton:disabled {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: not-allowed;
+  color: gray;
+}
+.iconButton:disabled .mdi-light {
+  color: gray;
+}

@@ -2,20 +2,22 @@ var express = require('express');
 var router = express.Router();
 const path = require('path');
 const app = express();
-
-app.use(express.static(__dirname));
-
-
-/* GET home page. */
-
-
+const publicBasePath = path.join(__dirname + '/../public/');
+app.use(express.static(path.join(__dirname)));
 
 router.get('/', function(req, res, next) {
-    res.sendFile(path.join(__dirname+'/../public/html/index.html'));
+    res.sendFile(path.join(publicBasePath + 'html/index.html'));
     // res.render('index', { title: 'Express' });
 });
 
+
+
+
+
+
 app.use('/', router);
+
+
 app.listen(8080, () =>{
     console.log("test");
 });

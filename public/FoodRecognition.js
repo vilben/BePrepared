@@ -19,21 +19,22 @@ class FoodRecognition {
 
 
     checkFood = (pathToImage) => {
-        let params = {
-            url: pathToImage
-        };
+        return new Promise((resolve, reject)=>{
 
-        return this.visualRecognition.classify(params, function (err, response) {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log(JSON.stringify(response, null, 2));
+            let params = {
+                url: pathToImage
+            };
 
-                return JSON.stringify(response);
-            }
+            this.visualRecognition.classify(params, function (err, response) {
+                if (err) {
+
+                    console.log(err);
+                    reject(err);
+                } else {
+                    resolve(response);
+                }
+            });
         });
     };
-
-
 }
 module.exports = FoodRecognition;

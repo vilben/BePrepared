@@ -566,9 +566,6 @@ body {
   height: 32px;
   padding: 2px;
 }
-.grid tr:hover {
-  /**/
-}
 .grid .gridPager {
   /*display: inline-block;*/
   padding-left: 0;

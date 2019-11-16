@@ -240,6 +240,17 @@ $baseWidth: 95%;
     }
 }
 
+.textBox {
+    @extend %textBoxBase;
+
+    &:enabled {
+        @extend %foreColor;
+    }
+
+    &:disabled {
+        @extend %backColorDisabled;
+    }
+}
 
 .nofloatGroup {
     display: flex;
@@ -254,7 +265,7 @@ $baseWidth: 95%;
     &.double {
         width: 98%;
 
-        .kpLabel {
+        .label {
             width: 10%;
         }
     }
@@ -264,7 +275,7 @@ $baseWidth: 95%;
     }
 
 
-    .kpLabel {
+    .label {
         pointer-events: none;
         color: #515a5a;
         background: white;

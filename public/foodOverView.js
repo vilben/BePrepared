@@ -14,23 +14,27 @@ class foodOverView {
 
 
     showList() {
-        var $foodList = $("#foodList");
-
-        var listElement = document.createElement("li");
-        listElement.value = "hello";
-
-        $foodList.append(listElement);
+        let file;
 
         $.get("getFood").done((response) => {
             console.log(response);
+            file = response;
         });
 
+        var $foodList = $("#foodList");
+        var listElement = document.createElement("li");
+
+        listElement.value = "hello";
+
+        $foodList.append('<li><p>New List Item</p></li>');
+        console.log(listElement);
     }
 }
 
+$("document").ready(function () {
+    let food = new foodOverView();
+
+    food.showList();
+});
 
 
-
-let food = new foodOverView();
-
-food.showList();

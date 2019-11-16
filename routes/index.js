@@ -16,6 +16,10 @@ router.get('/userOverview', function(req, res, next) {
     res.sendFile(path.join(publicRoute + '/html/userOverview.html'));
     // res.render('index', { title: 'Express' });
 });
+router.get('/userOverview', function(req, res, next) {
+    res.sendFile(path.join(publicRoute + '/html/userOverview.html'));
+    // res.render('index', { title: 'Express' });
+});
 
 router.get('/foodOverView', function(req, res, next) {
     res.sendFile(path.join(publicRoute + '/html/foodOverView.html'));

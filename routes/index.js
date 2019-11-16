@@ -36,8 +36,18 @@ router.get('/foodOverView', function(req, res, next) {
 router.get('/checkFood', (req, res, next) =>{
     let pathToBanana = "http://www.pngplay.com/wp-content/uploads/1/Banana-PNG-Royalty-Free.png";
     let foodRecognition = new FoodRecognition();
-    let result = foodRecognition.checkFood(pathToBanana);
-    res.send({result: result});
+    foodRecognition.checkFood(pathToBanana).then((data)=>{
+
+        console.log(data);
+
+
+
+        res.send(data);
+
+        let foodItemName = data.images[0]["classifiers"][0]["classes"][0]["class"];
+
+        console.log(foodItemName);
+    });
 });
 
 

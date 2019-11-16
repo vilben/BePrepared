@@ -1,8 +1,10 @@
 {
-  "name": "Sara",
-  "age": 23,
-  "gender": "Female",
-  "department": "History",
-  "car": "Honda",
-  "foodList" : {}
+  "foodList": [
+    {
+      "orange": 350
+    },
+    {
+      "banana": 750
+    }
+  ]
 }

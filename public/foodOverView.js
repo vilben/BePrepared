@@ -1,6 +1,28 @@
 class foodOverView {
     constructor() {
-        this.foodList = [];
+        this.showList();
+    }
+
+    showList() {
+        let file;
+        $.get("getFood").done((response) => {
+            console.log(response);
+            this.readJsonFile(response);
+        });
+
+
+    }
+
+    readJsonFile(json) {
+        let $foodList = $("#foodList");
+        let listElement = document.createElement("li");
+
+        listElement.value = "hello";
+        // var parse = JSON.parse(json);
+        listElement.innerText = "hello";
+
+        $foodList.append(listElement);
+        console.log(listElement);
     }
 
     addFood(foodItem, quantity) {
@@ -12,29 +34,10 @@ class foodOverView {
         // foodList.remove()
     }
 
-
-    showList() {
-        let file;
-
-        $.get("getFood").done((response) => {
-            console.log(response);
-            file = response;
-        });
-
-        var $foodList = $("#foodList");
-        var listElement = document.createElement("li");
-
-        listElement.value = "hello";
-
-        $foodList.append('<li><p>New List Item</p></li>');
-        console.log(listElement);
-    }
 }
 
 $("document").ready(function () {
     let food = new foodOverView();
-
-    food.showList();
 });
 
 

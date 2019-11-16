@@ -12,11 +12,9 @@ app.use('/', express.static(projectRoot));
 
 router.get('/', function(req, res, next) {
     res.sendFile(path.join(publicRoute + '/html/index.html'));
-    // res.render('index', { title: 'Express' });
 });
 router.get('/dashboard', function(req, res, next) {
     res.sendFile(path.join(publicRoute + '/html/dashboard.html'));
-    // res.render('index', { title: 'Express' });
 });
 
 app.use('/', router);

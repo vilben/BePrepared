@@ -11,7 +11,7 @@ app.use('/', express.static(projectRoot));
 const FoodRecognition = require(publicRoute + '/FoodRecognition.js');
 
 const fs = require('fs');
-const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
+const VisualRecognitionV3 = require('ibm-watson/visual-recognition/v3');
 
 router.get('/', function(req, res, next) {
     res.sendFile(path.join(publicRoute + '/html/index.html'));

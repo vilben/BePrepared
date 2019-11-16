@@ -35,9 +35,10 @@ class UserOverview {
 
         var myTableDiv = $("#userList");
         var table = document.createElement('TABLE');
+        table.setAttribute("class", "grid");
         var tableBody = document.createElement('TBODY');
-            
-        table.border = '1'
+        tableBody.setAttribute("class", "gridBody");
+    
         table.appendChild(tableBody);
             
         var heading = new Array();
@@ -49,6 +50,7 @@ class UserOverview {
         var stock = this.users
            
         var tr = document.createElement('TR');
+        tr.setAttribute("class", "gridHeader")
         tableBody.appendChild(tr);
 
         for (var i = 0; i < heading.length; i++) {
@@ -56,12 +58,19 @@ class UserOverview {
             th.width = '75';
             th.appendChild(document.createTextNode(heading[i]));
             tr.appendChild(th);
-           
         }
-            
+
+        var alternateRow = false;
         for (var i = 0; i < stock.length; i++) {
+            alternateRow = !alternateRow;
 
             var tr = document.createElement('TR');
+            if(alternateRow){
+                tr.setAttribute("class", "gridAlterRow");
+            }
+            else{
+                tr.setAttribute("class", "gridRow");
+            }
             
             var td = document.createElement('TD')
             td.appendChild(document.createTextNode(stock[i].name));

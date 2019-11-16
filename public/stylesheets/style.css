@@ -1,4 +1,8 @@
 @charset "UTF-8";
+body {
+  background-color: #a6c1c1a3;
+}
+
 .nofloatGroup {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -16,13 +20,13 @@
 .nofloatGroup.double {
   width: 98%;
 }
-.nofloatGroup.double .kpLabel {
+.nofloatGroup.double .label {
   width: 10%;
 }
 .nofloatGroup.noWhiteSpace {
   padding-left: 0;
 }
-.nofloatGroup .kpLabel {
+.nofloatGroup .label {
   pointer-events: none;
   color: #515a5a;
   background: white;
@@ -69,7 +73,6 @@
   -webkit-transform: translate(5px, -8px) scale(1);
           transform: translate(5px, -8px) scale(1);
   /*background: white;*/
-  background-image: linear-gradient(white 9px, transparent 7px);
   padding-left: 3px;
   padding-left: 3px;
 }
@@ -120,7 +123,6 @@
   /*@extend %textStyle;*/
   font-size: 14pt;
   font-weight: bold;
-  background-color: white;
   padding: 4px;
   float: left;
 }
@@ -131,15 +133,44 @@
 .label-faded {
   opacity: 0.7;
 }
-.label {
+.textBox:disabled {
+  color: rgba(0, 0, 0, 0.54);
+  cursor: not-allowed;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.textBox:enabled {
+  color: rgba(0, 0, 0, 0.54);
+}
+.textBox:focus {
+  color: white;
+  background-color: white;
+  outline: none;
+}
+.textBox:focus-within {
+  color: rgba(0, 0, 0, 0.87);
+}
+.textBox:required:invalid {
+  border-left: 2px solid #d34545;
+  padding-left: 2px;
+}
+.textBox:required:valid {
+  border-left: 2px solid #4da241;
+  padding-left: 2px;
+}
+
+.textBox:enabled, .label {
   color: #515a5a;
 }
 
-.titleText {
-  background-color: #5f6d6d;
+.textBox:disabled {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .label, .label-footer {
   font-family: FrutigerNextLT-Light, sans-serif;
   font-size: 14px;
+}
+
+.textBox {
+  border: 1px solid rgba(0, 0, 0, 0.15);
 }

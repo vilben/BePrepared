@@ -1,34 +1,66 @@
 class UserOverview {
 
     constructor(){
-        this.users = []
+        this.users = [];
+        this.loadData();
+        
+    }
 
-        this.loadDemoData()
-        this.showData()
+    addUserClick(){
+        this.showAddUserPanel();
+    }
+
+    saveUserClick(){
+
+        var elements = document.getElementById("newUserForm").elements
+
+        var obj ={};
+        for(var i = 0 ; i < elements.length ; i++){
+            var item = elements.item(i);
+            obj[item.name] = item.value;
+        }
+        obj["id"] = Math.round(Math.random() * 100000000);
+        
+        this.users.push(obj);
+        this.saveData()
+        this.hideAddUserPanel();
+
+    }
+    
+    hideAddUserPanel(){
+        $("#addUserPanel").css("display", "none");
+    }
+    
+    showAddUserPanel(){
+        $("#addUserPanel").css("display", "block");
+    }
+
+    removeUser(userId){
+        var index = this.users.map(x => {
+            return x.id;
+        }).indexOf(userId);
+          
+        this.users.splice(index, 1);
         this.saveData()
     }
 
-    saveData(){
-        localStorage.setItem("userData", JSON.stringify(this.users));
+    loadData() {
+        $.get("getUsers").done((response) => {
+            this.users = response.userList;
+            this.showData();
+        });   
+        
     }
 
-    loadDemoData(){
+    saveData(){
 
-        if (localStorage.getItem("userData") === null) {
-            var demoUser1 = new User("Simon", "Noser", "23.01.1998", "m");
-            var demoUser2 = new User("Moritz", "Schiesser", "23.01.1998", "m");
-            var demoUser3 = new User("Benny Joe", "Villiger", "23.01.1998", "m");
-            var demoUser4 = new User("Zuzanna ", "Lottenbach", "23.01.1998", "w");
-            var demoUser5 = new User("Aldin", "Delic", "23.01.1998", "m");
+        var jsonData = {
+            userList: this.users
+        };
 
-            this.users.push(demoUser1);
-            this.users.push(demoUser2);
-            this.users.push(demoUser3);
-            this.users.push(demoUser4);
-            this.users.push(demoUser5);
-        } else {
-            this.users = JSON.parse(localStorage.getItem("userData"))
-        }
+        $.post("getUsers", jsonData).done((response) => {
+            this.loadData();
+        });  
     }
 
     showData(){
@@ -38,19 +70,20 @@ class UserOverview {
         table.setAttribute("class", "grid");
         var tableBody = document.createElement('TBODY');
         tableBody.setAttribute("class", "gridBody");
-    
+            
         table.appendChild(tableBody);
             
         var heading = new Array();
         heading[0] = "Name"
         heading[1] = "Surname"
-        heading[2] = "Age"
+        heading[2] = "Birth"
         heading[3] = "Gender"
+        heading[4] = "Actions"
             
         var stock = this.users
            
         var tr = document.createElement('TR');
-        tr.setAttribute("class", "gridHeader")
+        tr.setAttribute("class", "gridHeader");
         tableBody.appendChild(tr);
 
         for (var i = 0; i < heading.length; i++) {
@@ -58,14 +91,14 @@ class UserOverview {
             th.width = '75';
             th.appendChild(document.createTextNode(heading[i]));
             tr.appendChild(th);
+           
         }
-
-        var alternateRow = false;
+            
+        let alternating = false;
         for (var i = 0; i < stock.length; i++) {
-            alternateRow = !alternateRow;
-
+            alternating = !alternating;
             var tr = document.createElement('TR');
-            if(alternateRow){
+            if(alternating){
                 tr.setAttribute("class", "gridAlterRow");
             }
             else{
@@ -88,17 +121,26 @@ class UserOverview {
             td.appendChild(document.createTextNode(stock[i].gender));
             tr.appendChild(td)
 
+            var td = document.createElement('TD')
+            var a = document.createElement('A');
+            a.setAttribute('class', "conButton mdi mdi-light mdi-19px btnWarning mdi-account-plus");
+            a.setAttribute('onclick',"UserOverview.removeUser(" + stock[i].id + ")")
+            a.innerHTML = "Remove";
+
+            td.appendChild(a);
+            tr.appendChild(td);
             tableBody.appendChild(tr);
         }
 
-        $("#userList").append(table)
+        $("#userList").html(table);
         
     }
 }
 
 class User {
     
-    constructor(name, surName, birth, gender){
+    constructor(id, name, surName, birth, gender){
+        this.id = id;
         this.name = name;
         this.surName = surName;
         this.birth = birth;

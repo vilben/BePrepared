@@ -10,6 +10,11 @@ router.get('/', function(req, res, next) {
     // res.render('index', { title: 'Express' });
 });
 
+router.get('/userOverview', function(req, res, next) {
+    res.sendFile(path.join(publicBasePath + 'html/userOverview.html'));
+});
+
+
 
 
 

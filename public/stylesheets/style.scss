@@ -3,7 +3,8 @@ $baseColor: #5f6d6d;
 $darkBaseColor: #515a5a;
 $controlDisabled: rgba(0, 0, 0, 0.38);
 $controlEnabled: rgba(0, 0, 0, 0.54);
-$controlFocus: rgba(0, 0, 0, 0.87);
+//$controlFocus: rgba(0, 0, 0, 0.87);
+$controlFocus: white;
 $controlFocusWithin: rgba(0, 0, 0, 0.87);
 $baseBorderColor: rgba(0,0,0,.15);
 $baseColor2: #E0E4E4;
@@ -240,6 +241,21 @@ $baseWidth: 95%;
     }
 }
 
+body{
+    background-color: #a6c1c1a3;
+}
+
+.textBox {
+    @extend %textBoxBase;
+
+    &:enabled {
+        @extend %foreColor;
+    }
+
+    &:disabled {
+        @extend %backColorDisabled;
+    }
+}
 
 .nofloatGroup {
     display: flex;
@@ -254,7 +270,7 @@ $baseWidth: 95%;
     &.double {
         width: 98%;
 
-        .kpLabel {
+        .label {
             width: 10%;
         }
     }
@@ -264,7 +280,7 @@ $baseWidth: 95%;
     }
 
 
-    .kpLabel {
+    .label {
         pointer-events: none;
         color: #515a5a;
         background: white;
@@ -308,7 +324,7 @@ $baseWidth: 95%;
         color: #515a5a;
         transform: translate(5px, -8px) scale(1);
         /*background: white;*/
-        background-image: linear-gradient(white 9px, transparent 7px);
+        // background-image: linear-gradient(white 9px, transparent 7px);
         padding-left: 3px;
         padding-left: 3px;
     }
@@ -367,11 +383,11 @@ $baseWidth: 95%;
 }
 
 .titleText {
-    @extend %backColorDark;
+    //@extend %backColorDark;
     /*@extend %textStyle;*/
     font-size: 14pt;
     font-weight: bold;
-    background-color: $baseWhite;
+    //background-color: $baseWhite;
     padding: 4px;
     float: left;
 }
@@ -392,7 +408,7 @@ $baseWidth: 95%;
 
 %control {
     &:disabled {
-        //color: $controlEnabled;
+        color: $controlEnabled;
         cursor: not-allowed;
         background-color: rgba($baseLightGray, 0.05);
     }
@@ -401,9 +417,9 @@ $baseWidth: 95%;
         color: $controlEnabled;
     }
 
-    &:focus {
+    &:focus { 
         color: $controlFocus;
-        background-color: rgba($baseYellow, 0.38);
+        background-color: white;
         outline: none;
     }
 
@@ -490,4 +506,56 @@ $baseWidth: 95%;
 
 %halfOpacity {
     opacity: 0.7;
+}
+
+@include createButtonColor($darkBaseColor, btnNeutral);
+@include createButtonColor($baseGreen, btnSuccess);
+@include createButtonColor($baseOrange, btnWarning);
+@include createButtonColor($baseRed, btnDanger);
+@include createButtonColor($baseBlue, btnCreate);
+@include createButtonColor($strongOrange, btnStrongWarning);
+
+
+.mdi-19px.mdi-set, .mdi-19px.mdi:before {
+    font-size: 19px;
+    margin: 1px;
+}
+
+.inRow {
+    font-size: 14px;
+    padding: 4px;
+}
+
+
+
+.iconButton {
+    border: $baseBorder;
+    min-height: 21px;
+    padding: 2px 3px 2px 3px;
+    /*padding: 7px 4px 4px 4px;*/
+    text-decoration: none;
+    font-weight: normal;
+    margin: 1px;
+    outline: 0 none;
+    display: inline-flex;
+    align-items: center;
+
+    &:disabled {
+        border: $baseBorder;
+        cursor: not-allowed;
+        color: gray;
+
+        .mdi-light {
+            color: gray;
+        }
+    }
+
+    /*&:hover {
+        &:before {
+            -webkit-animation: mdi-spin 0.4s 1 linear;
+            -moz-animation: mdi-spin 0.4s 1 linear;
+            -o-animation: mdi-spin 0.4s 1 linear;
+            animation: mdi-spin 0.4s 1 linear;
+        }
+    }*/
 }

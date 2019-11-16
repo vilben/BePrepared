@@ -6,6 +6,23 @@ class UserOverview {
         
     }
 
+    addUserClick(){
+        this.showAddUserPanel();
+    }
+
+    saveUserClick(){
+        // todo: impl
+        this.hideAddUserPanel();
+    }
+    
+    hideAddUserPanel(){
+        $("#addUserPanel").css("display", "none");
+    }
+    
+    showAddUserPanel(){
+        $("#addUserPanel").css("display", "block");
+    }
+
     addUser(user){
         this.users.push(user);
     }
@@ -44,9 +61,10 @@ class UserOverview {
 
         var myTableDiv = $("#userList");
         var table = document.createElement('TABLE');
+        table.setAttribute("class", "grid");
         var tableBody = document.createElement('TBODY');
+        tableBody.setAttribute("class", "gridBody");
             
-        table.border = '1'
         table.appendChild(tableBody);
             
         var heading = new Array();
@@ -59,6 +77,7 @@ class UserOverview {
         var stock = this.users
            
         var tr = document.createElement('TR');
+        tr.setAttribute("class", "gridHeader");
         tableBody.appendChild(tr);
 
         for (var i = 0; i < heading.length; i++) {
@@ -69,9 +88,16 @@ class UserOverview {
            
         }
             
+        let alternating = false;
         for (var i = 0; i < stock.length; i++) {
-
+            alternating = !alternating;
             var tr = document.createElement('TR');
+            if(alternating){
+                tr.setAttribute("class", "gridAlterRow");
+            }
+            else{
+                tr.setAttribute("class", "gridRow");
+            }
             
             var td = document.createElement('TD')
             td.appendChild(document.createTextNode(stock[i].name));

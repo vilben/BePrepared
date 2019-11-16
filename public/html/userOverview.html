@@ -15,7 +15,7 @@
         initPage();
         UserOverview = new UserOverview();
 
-        $('#addUser').on('click', $('#addUser').css("display","block"))
+        //$('#addUser').on('click', $('#addUser').css("display","block"))
     })
     
     
@@ -24,13 +24,14 @@
 
 <body>
     <h1 class="titleText" >User Overview</h1>
-    <a class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-plus">Add User</a>
+    <a onclick='UserOverview.addUserClick();' class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-plus">Add User</a>
 
     <div class="floatGroup" id="userList">
         
     </div>
-    <div class="floatGroup" id="addUser" style="display: none;">
-        adsasadasdasds
+    <div class="floatGroup" id="addUserPanel" style="display: none;">
+        <!-- form -->
+        <a onclick="UserOverview.saveUserClick();" class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-check">Save</a>
     </div>
 
 

@@ -12,6 +12,7 @@
     <script type="text/javascript">
 
     $("document").ready(function (){
+        initPage();
         Bluber = new UserOverview();
     })
     
@@ -20,9 +21,9 @@
 </head>
 
 <body>
-    <h1>User Overview</h1>
-    <button>Add User</button>
-    <button>Remove User</button>
+    <h1 class="titleText" >User Overview</h1>
+    <a class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-plus">Add User</a>
+    <a class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-remove">Remove User</a>
 
     <div class="floatGroup" id="userList">
         

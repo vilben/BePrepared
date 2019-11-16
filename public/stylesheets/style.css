@@ -1,6 +1,7 @@
 @charset "UTF-8";
 body {
   background-color: #a6c1c1a3;
+  font-family: sans-serif;
 }
 
 .nofloatGroup {
@@ -158,15 +159,23 @@ body {
   padding-left: 2px;
 }
 
-.textBox:enabled, .label {
+.grid:enabled, .grid, .textBox:enabled, .label {
   color: #515a5a;
+}
+
+.gridAlterRow {
+  background-color: #E0E4E4;
+}
+
+.gridHeader {
+  background-color: #5f6d6d;
 }
 
 .textBox:disabled {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-.label, .label-footer {
+.grid, .label, .label-footer {
   font-family: FrutigerNextLT-Light, sans-serif;
   font-size: 14px;
 }
@@ -534,4 +543,103 @@ body {
 }
 .iconButton:disabled .mdi-light {
   color: gray;
+}
+
+.grid {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 0px;
+  border-color: grey;
+  background-color: transparent;
+  border-bottom-width: thin;
+  margin-top: 5px;
+}
+.grid td {
+  border: 1px solid white;
+  border-left: none;
+  border-right: none;
+}
+.grid th {
+  border-right: 1px solid white;
+}
+.grid tr {
+  height: 32px;
+  padding: 2px;
+}
+.grid tr:hover {
+  /**/
+}
+.grid .gridPager {
+  /*display: inline-block;*/
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+.grid .gridPager table {
+  float: right;
+}
+.grid .gridPager table > tbody > tr > td {
+  display: inline;
+}
+.grid .gridPager table > tbody > tr > td > a,
+.grid .gridPager table > tbody > tr > td > span {
+  position: relative;
+  float: left;
+  padding: 8px 12px;
+  line-height: 1.42857143;
+  text-decoration: none;
+  color: rgba(81, 90, 90, 0.9);
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid #dddddd;
+  margin-left: -1px;
+}
+.grid .gridPager table > tbody > tr > td > span {
+  position: relative;
+  float: left;
+  padding: 8px 12px;
+  line-height: 1.42857143;
+  text-decoration: none;
+  margin-left: -1px;
+  z-index: 2;
+  color: #3b6b94;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-color: #dddddd;
+  cursor: default;
+}
+
+.gridHeader {
+  color: white;
+  font-weight: bold;
+  text-align: left;
+}
+.gridHeader th {
+  padding: 2px;
+  text-align: left;
+}
+
+.gridBody {
+  background: white;
+}
+
+.gridRow {
+  background-color: white;
+  border: none;
+}
+.gridRow:hover {
+  -webkit-filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.23));
+  filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.23));
+}
+
+.gridAlterRow {
+  border: none;
+}
+.gridAlterRow:hover {
+  -webkit-filter: drop-shadow(0 0 0.75rem rgba(136, 136, 136, 0.78));
+  filter: drop-shadow(0 0 0.75rem rgba(136, 136, 136, 0.78));
+}
+
+.gridSelectedRow {
+  background-color: rgba(24, 130, 9, 0.55);
+  font-weight: bold;
 }

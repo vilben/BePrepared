@@ -1,4 +1,11 @@
 
+function initPage() {
+        initFloats();
+        findCollapsibles();
+        initCollapsibles();
+        restoreCollapsibles();
+}
+
 function checkFloatGroup(floatId) {
     $("*").find('.floatControl[data-float-id="' + floatId + '"]').each(function () {
         if ($(this).get(0).value !== "") {

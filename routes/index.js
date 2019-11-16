@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const path = require('path');
 const app = express();
+const fs = require("fs");
 const projectRoot = path.resolve(__dirname, '../');
 const publicRoute = path.resolve(projectRoot + '/public');
 app.use('public', express.static(publicRoute));
@@ -21,6 +22,13 @@ router.get('/foodOverView', function(req, res, next) {
     res.sendFile(path.join(publicRoute + '/html/foodOverView.html'));
     // res.render('index', { title: 'Express' });
 });
+
+router.get('/getFood', function(req, res, next) {
+    res.sendFile(path.join(publicRoute + '/foodDummy.json'));
+    // res.render('index', { title: 'Express' });
+});
+
+
 app.use('/', router);
 app.listen(8080, () =>{
     console.log("test");

@@ -11,6 +11,21 @@ class foodOverView {
     removeFood() {
         // foodList.remove()
     }
+
+
+    showList() {
+        var $foodList = $("#foodList");
+
+        var listElement = document.createElement("li");
+        listElement.value = "hello";
+
+        $foodList.append(listElement);
+
+        $.get("getFood").done((response) => {
+            console.log(response);
+        });
+
+    }
 }
 
 
@@ -18,4 +33,4 @@ class foodOverView {
 
 let food = new foodOverView();
 
-food.addFood();
+food.showList();

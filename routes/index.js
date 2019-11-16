@@ -14,11 +14,13 @@ router.get('/userOverview', function(req, res, next) {
     res.sendFile(path.join(publicBasePath + 'html/userOverview.html'));
 });
 
+router.get('/controls.js', function(req, res, next) {
+    res.sendFile(path.join(publicBasePath + 'controls.js'));
+});
 
-
-
-
-
+router.get('/userOverview.js', function(req, res, next) {
+    res.sendFile(path.join(publicBasePath + 'userOverview.js'));
+});
 
 app.use('/', router);
 

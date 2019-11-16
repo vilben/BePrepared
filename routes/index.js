@@ -12,7 +12,6 @@ app.use('/', express.static(projectRoot));
 const FoodRecognition = require(publicRoute + '/FoodRecognition.js');
 
 const VisualRecognitionV3 = require('ibm-watson/visual-recognition/v3');
-const FoodRecognition = require(publicRoute + '/FoodRecognition');
 
 router.get('/', function(req, res, next) {
     res.sendFile(path.join(publicRoute + '/html/index.html'));
@@ -38,6 +37,7 @@ router.get('/getFood', function(req, res, next) {
     res.sendFile(path.join(publicRoute + '/foodDummy.json'));
     // res.render('index', { title: 'Express' });
 });
+
 router.get('/checkFood', (req, res, next) =>{
     let pathToBanana = "http://www.pngplay.com/wp-content/uploads/1/Banana-PNG-Royalty-Free.png";
     let foodRecognition = new FoodRecognition();

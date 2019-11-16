@@ -10,19 +10,22 @@ class foodOverView {
             this.readJsonFile(response);
         });
 
-
     }
 
     readJsonFile(json) {
         let $foodList = $("#foodList");
-        let listElement = document.createElement("li");
 
-        listElement.value = "hello";
-        // var parse = JSON.parse(json);
-        listElement.innerText = "hello";
+        var foodList = json.foodList;
+        console.log(foodList);
 
-        $foodList.append(listElement);
-        console.log(listElement);
+        foodList.forEach(food => {
+                let listElement = document.createElement("li");
+                listElement.innerText = food.name+": "+food.stock;
+                $foodList.append(listElement);
+                console.log(listElement);
+            }
+        );
+
     }
 
     addFood(foodItem, quantity) {

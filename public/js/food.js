@@ -1,16 +1,17 @@
 class food{
-    minCalories = 400;
+    minCarbs = 400;
     minProteine = 75;
     minFat = 20;
     
     /*
-     * kcal, proteins and fat per 100 gramms
+     * carbohydrates, proteins and fat per 100 gramms and stock
      */
-    constructor(name, kcal, proteins, fat){
+    constructor(name, carbohydrates, proteins, fat, stock){
         this.name = name;
-        this.kcal = kcal;
+        this.carbohydrates = carbohydrates;
         this.proteins = proteins;
         this.fat = fat;
+        this.stock= stock;
     }
 
     getNutritionValue(){
@@ -20,7 +21,7 @@ class food{
     calcRatioPerDay(days, amountInGramms){
         // todo: wtf even is this
         var grammsPerDay = amountInGramms / days;
-        let kcalPerDay = (this.kcal / 100) * gramsPerDay;
+        let carbohydratesPerDay = (this.carbohydrates / 100) * gramsPerDay;
         let proteinePerDay = (this.proteins / 100) * gramsPerDay;
         let minFatPerDay = (this.fat / 100) * gramsPerDay;
 

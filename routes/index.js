@@ -4,6 +4,8 @@ const path = require('path');
 const app = express();
 const projectRoot = path.resolve(__dirname, '../');
 const publicRoute = path.resolve(projectRoot + '/public');
+const fs = require('fs');
+const bodyParser = require('body-parser');
 
 app.use('public', express.static(publicRoute));
 app.use('/', express.static(projectRoot));
@@ -11,8 +13,8 @@ app.use(
     bodyParser.urlencoded({
       extended: true
     })
-  )
-app.use(bodyParser.json())
+  );
+app.use(bodyParser.json());
 
 const FoodRecognition = require(publicRoute + '/FoodRecognition');
 

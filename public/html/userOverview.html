@@ -1,34 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Test</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/public/stylesheets/style.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+<div>
     <script type="text/javascript" src="/public/controls.js"></script>
     <script type="text/javascript" src="/public/userOverview.js"></script>
     <script type="text/javascript">
-
-        $("document").ready(function () {
-            initPage();
+         initPage();
             UserOverview = new UserOverview();
-
             //$('#addUser').on('click', $('#addUser').css("display","block"))
-        })
-
-
     </script>
-</head>
 
-<body>
     <div class="floatGroup">
         <h1 class="titleText">User Overview</h1>
     </div>
     <div class="floatGroup">
         <a onclick='UserOverview.addUserClick();'
-            class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-plus">Add
+           class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-plus">Add
             User</a>
     </div>
     <div class="floatGroup" id="userList">
@@ -47,10 +31,8 @@
             <input type="text" name="gender"><br>
         </form>
         <a onclick="UserOverview.saveUserClick();"
-            class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-check">Save</a>
+           class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-check">Save</a>
     </div>
 
 
-</body>
-
-</html>
+</div>

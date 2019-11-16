@@ -11,8 +11,20 @@ class UserOverview {
     }
 
     saveUserClick(){
-        // todo: impl
+
+        var elements = document.getElementById("newUserForm").elements
+
+        var obj ={};
+        for(var i = 0 ; i < elements.length ; i++){
+            var item = elements.item(i);
+            obj[item.name] = item.value;
+        }
+        obj["id"] = Math.round(Math.random() * 100000000);
+        
+        this.users.push(obj);
+        this.saveData()
         this.hideAddUserPanel();
+
     }
     
     hideAddUserPanel(){
@@ -23,16 +35,13 @@ class UserOverview {
         $("#addUserPanel").css("display", "block");
     }
 
-    addUser(user){
-        this.users.push(user);
-    }
-
     removeUser(userId){
         var index = this.users.map(x => {
             return x.id;
         }).indexOf(userId);
           
         this.users.splice(index, 1);
+        this.saveData()
     }
 
     loadData() {
@@ -49,13 +58,10 @@ class UserOverview {
             userList: this.users
         };
 
-        
         $.post("getUsers", jsonData).done((response) => {
-            console.log("Wrote to file... maaaybe");
+            this.loadData();
         });  
-
     }
-
 
     showData(){
 
@@ -126,7 +132,7 @@ class UserOverview {
             tableBody.appendChild(tr);
         }
 
-        $("#userList").append(table);
+        $("#userList").html(table);
         
     }
 }

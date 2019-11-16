@@ -1,4 +1,8 @@
 @charset "UTF-8";
+body {
+  background-color: #a6c1c1a3;
+}
+
 .nofloatGroup {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -69,7 +73,6 @@
   -webkit-transform: translate(5px, -8px) scale(1);
           transform: translate(5px, -8px) scale(1);
   /*background: white;*/
-  background-image: linear-gradient(white 9px, transparent 7px);
   padding-left: 3px;
   padding-left: 3px;
 }
@@ -120,7 +123,6 @@
   /*@extend %textStyle;*/
   font-size: 14pt;
   font-weight: bold;
-  background-color: white;
   padding: 4px;
   float: left;
 }
@@ -132,6 +134,7 @@
   opacity: 0.7;
 }
 .textBox:disabled {
+  color: rgba(0, 0, 0, 0.54);
   cursor: not-allowed;
   background-color: rgba(0, 0, 0, 0.05);
 }
@@ -139,8 +142,8 @@
   color: rgba(0, 0, 0, 0.54);
 }
 .textBox:focus {
-  color: rgba(0, 0, 0, 0.87);
-  background-color: rgba(246, 225, 132, 0.38);
+  color: white;
+  background-color: white;
   outline: none;
 }
 .textBox:focus-within {
@@ -157,10 +160,6 @@
 
 .textBox:enabled, .label {
   color: #515a5a;
-}
-
-.titleText {
-  background-color: #5f6d6d;
 }
 
 .textBox:disabled {

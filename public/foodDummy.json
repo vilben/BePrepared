@@ -1,0 +1,32 @@
+{
+  "foodList": [
+    {
+      "name": "orange",
+      "carbohydrates": 1000,
+      "proteins": 2000,
+      "fat": 3000,
+      "stock": 2
+    },
+    {
+      "name": "fish",
+      "carbohydrates": 11000,
+      "proteins": 22000,
+      "fat": 33000,
+      "stock": 3
+    },
+    {
+      "name": "chicken",
+      "carbohydrates": 10001,
+      "proteins": 20001,
+      "fat": 30001,
+      "stock": 4
+    },
+    {
+      "name": "kiwi",
+      "carbohydrates": 10400,
+      "proteins": 20500,
+      "fat": 30600,
+      "stock": 5
+    }
+  ]
+}

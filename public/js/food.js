@@ -27,8 +27,9 @@ class food{
         return grammsPerDay;
     }
 
-    calcMaxDays(amountInGramms){
+    calcMaxDays(amountInGramms, personAmount){
         // todo: wtf even is this
+        // todo: something with personAmount
         let minGrammsPerDay = -1;
 
         return amountInGramms / minGrammsPerDay;

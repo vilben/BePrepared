@@ -5,23 +5,30 @@
     <meta charset="UTF-8">
     <title>Test</title>
 
-    <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-    <script type="text/javascript" src="../controls.js"></script>
+    <script type="text/javascript" src="/public/controls.js"></script>
     <script type="text/javascript">
+        $(document).ready(function () {
+            initPage();
+        });
     </script>
 </head>
 
 <body>
     <h1 class="titleText">test</h1>
     <div class="floatGroup">
-        <span class="label floatLabel" runat="server" data-float-id="txtNonRequired">normal input</span><input type="text"
-            class="textBox floatControl" runat="server" autocomplete="off" data-float-id="txtNonRequired" style="width:100%;">
+        <span class="label floatLabel" runat="server" data-float-id="txtNonRequired">normal input</span><input
+            type="text" class="textBox floatControl" runat="server" autocomplete="off" data-float-id="txtNonRequired"
+            style="width:100%;">
     </div>
     <div class="floatGroup">
         <span class="label floatLabel" runat="server" data-float-id="txtTenant0">Required input</span><input type="text"
-            class="textBox floatControl" runat="server" required="required" autocomplete="off" data-float-id="txtTenant0" style="width:100%;">
+            class="textBox floatControl" runat="server" required="required" autocomplete="off"
+            data-float-id="txtTenant0" style="width:100%;">
     </div>
+
+    <a onclick="return false;" class="iconButton mdi mdi-light mdi-19px btnWarning mdi-cancel">Abbrechen</a>
 </body>
 
 </html>

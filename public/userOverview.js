@@ -10,6 +10,14 @@ class UserOverview {
         this.users.push(user);
     }
 
+    removeUser(userId){
+        var index = this.users.map(x => {
+            return x.id;
+        }).indexOf(userId);
+          
+        this.users.splice(index, 1);
+    }
+
     loadData() {
         $.get("getUsers").done((response) => {
             this.users = response.userList;
@@ -44,8 +52,9 @@ class UserOverview {
         var heading = new Array();
         heading[0] = "Name"
         heading[1] = "Surname"
-        heading[2] = "Age"
+        heading[2] = "Birth"
         heading[3] = "Gender"
+        heading[4] = "Actions"
             
         var stock = this.users
            
@@ -80,17 +89,26 @@ class UserOverview {
             td.appendChild(document.createTextNode(stock[i].gender));
             tr.appendChild(td)
 
+            var td = document.createElement('TD')
+            var a = document.createElement('A');
+            a.setAttribute('class', "conButton mdi mdi-light mdi-19px btnWarning mdi-account-plus");
+            a.setAttribute('onclick',"UserOverview.removeUser(" + stock[i].id + ")")
+            a.innerHTML = "Remove";
+
+            td.appendChild(a);
+            tr.appendChild(td);
             tableBody.appendChild(tr);
         }
 
-        $("#userList").append(table)
+        $("#userList").append(table);
         
     }
 }
 
 class User {
     
-    constructor(name, surName, birth, gender){
+    constructor(id, name, surName, birth, gender){
+        this.id = id;
         this.name = name;
         this.surName = surName;
         this.birth = birth;

@@ -13,7 +13,9 @@
 
     $("document").ready(function (){
         initPage();
-        Bluber = new UserOverview();
+        UserOverview = new UserOverview();
+
+        $('#addUser').on('click', $('#addUser').css("display","block"))
     })
     
     
@@ -23,10 +25,12 @@
 <body>
     <h1 class="titleText" >User Overview</h1>
     <a class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-plus">Add User</a>
-    <a class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-remove">Remove User</a>
 
     <div class="floatGroup" id="userList">
         
+    </div>
+    <div class="floatGroup" id="addUser" style="display: none;">
+        adsasadasdasds
     </div>
 
 

@@ -1,6 +1,6 @@
 class FoodRecognition {
 
-    VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
+    VisualRecognitionV3 = require('ibm-watson/visual-recognition/v3');
     token = {
         "apikey": "KyOUAHDG1AbTmQq5azfaDAjtbxCp1e2AjSaTDdMx_QqD",
         "iam_apikey_description": "Auto-generated for key f612b90a-3b73-4d0c-be87-ca65c917e151",

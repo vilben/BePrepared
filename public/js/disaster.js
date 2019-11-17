@@ -7,6 +7,8 @@ class DisasterSituation {
         this.carbohydrates = 0;
         this.fat = 0;
         this.proteins = 0;
+        this.calories = 0;
+
         this.users = 0;
 
         this.minCal = 1000;
@@ -18,6 +20,7 @@ class DisasterSituation {
     calculateValues(){
         this.calcTotalValues();
         this.calcTotalUsers();
+        this.calcCalories();
         this.calcDaysAvailable();
         this.calcAvailablePerDay();
     }
@@ -70,18 +73,44 @@ class DisasterSituation {
 
     }
 
+    calcCalories(){
+        this.calories += this.carbohydrates * 4;
+        this.calories += this.fat * 9;
+        this.calories += this.proteins * 4;
+    }
+
     calcDaysAvailable(){
-        this.daysAvailableCarbs = this.carbohydrates / (this.users * this.minCal) + 3;
-        $("#daysAvailable").html("Days available using carbohydrates: " + this.daysAvailableCarbs);
+        this.daysAvailableCalories = (this.calories / (this.users * this.minCal)) + 3;
+        $("#daysAvailable").html("Calories for days..: " + this.daysAvailableCalories);
     }
 
     calcAvailablePerDay(){
-        var availableFatPerDay = this.fat / this.daysAvailableCarbs / this.users;
-        var availableProteinPerDay = this.proteins / this.daysAvailableCarbs / this.users;
+        var availableCarbsPerDay = this.carbohydrates / this.daysAvailableCalories / this.users;
+        var availableFatPerDay = this.fat / this.daysAvailableCalories / this.users;
+        var availableProteinPerDay = this.proteins / this.daysAvailableCalories / this.users;
 
-        $("#FatPerDay").html("Days available using carbohydrates: " + availableFatPerDay);
-        $("#ProteinsPerDay").html("Days available using carbohydrates: " + availableProteinPerDay);
+        $("#CarbsPerDay").html("Carbohydrates available per day: " + availableCarbsPerDay);
+        $("#ProteinsPerDay").html("Protein available per day: " + availableProteinPerDay);
+        $("#FatPerDay").html("Fat available per day: " + availableFatPerDay);
 
     }
 
+    calcDiet(){
+
+        var foodSortedByDaysLeft = this.foodList.sort((a,b) => (parseInt(a.daysLeft) > parseInt(b.daysLeft)) ? 1 : ((parseInt(b.daysLeft) > parseInt(a.daysLeft)) ? -1 : 0)); 
+
+        var foodNextDay =  foodSortedByDaysLeft.filter(function( obj ) {
+            return obj.daysLeft <= 1;
+        });
+        var foodNext3Days =  foodSortedByDaysLeft.filter(function( obj ) {
+            return obj.daysLeft > 1 && obj.daysLeft <= 3;
+        });
+        var foodNext7Days =  foodSortedByDaysLeft.filter(function( obj ) {
+            return obj.daysLeft > 3 && obj.daysLeft <= 7;
+        });
+        var foodNext14Days =  foodSortedByDaysLeft.filter(function( obj ) {
+            return obj.daysLeft > 7 && obj.daysLeft <= 14;
+        });
+
+    }
 }

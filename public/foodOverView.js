@@ -121,7 +121,7 @@ class foodOverView {
 
         var userChoice = openSelectionDialog(candidates);
 
-        var foodEntry = new food(userChoice.Name, userChoice["Carbohydrates, available (g)"], userChoice["Fat, total (g)"], userChoice["Protein (g)"], quantity);
+        var foodEntry = new food(userChoice.Name, userChoice["Carbohydrates, available (g)"], userChoice["Fat, total (g)"], userChoice["Protein (g)"], quantity, userChoice["Category"]);
 
         $.get("getFood").done((foodStock) => {
 
@@ -149,8 +149,8 @@ class foodOverView {
 
             foodList.forEach(food => {
                 if (food.name === foodItem) {
-                    if (food.weight < quantity) {
-                        foodList = foodList.filter(food.name !== foodItem);
+                    if (parseInt(food.weight) < parseInt(quantity)) {
+                        foodList = foodList.filter(food => food.name !== foodItem);
                     } else {
                         food.weight -= quantity;
                     }

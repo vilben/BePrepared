@@ -1,12 +1,39 @@
 <div id="mainContent">
     <div class="floatGroup">
-        <a onclick="foodOverView.addFood();" id="addFoodButton" class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-plus">Add Food</a>
-        <a id="scanFoodButton" class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-plus">Scan Food</a>
-        <a id="removeFoodButton" class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-plus">Remove Food</a>
+        <a onclick="foodOverView.addFoodClick();" id="addFoodButton" class="iconButton mdi mdi-light mdi-19px btnCreate mdi-plus-circle-outline">Add Food</a>
+        <a id="scanFoodButton" class="iconButton mdi mdi-light mdi-19px btnCreate mdi-camera-wireless-outline">Scan Food</a>
+        <a id="removeFoodButton" class="iconButton mdi mdi-light mdi-19px btnDanger mdi-minus-circle-outline">Remove Food</a>
     </div>
 
 
     <div class="floatGroup" id="tablePlaceholder">
 
     </div>
+
+    <div class="floatGroup" id="addFoodPanel" style="display: none;">
+            <!-- form -->
+            <form id="addFoodForm">
+                <div class="floatGroup">
+                    <span class="label floatLabel" runat="server" data-float-id="txtFoodName">Name</span>
+                    <input type="text" class="textBox floatControl" runat="server" autocomplete="off"
+                        data-float-id="txtFoodName" style="width:100%;" name="name">
+                </div>
+                <div class="floatGroup">
+                    <span class="label floatLabel" runat="server" data-float-id="txtAmount">Weight in gramms</span>
+                    <input type="text" class="textBox floatControl" runat="server" autocomplete="off"
+                        data-float-id="txtAmount" style="width:100%;" name="amount">
+                </div>
+                <!-- <div class="floatGroup">
+                    <span class="label outsetFloatLabel" runat="server" data-float-id="txtGender">Gender</span>
+                    <select name="gender" class="textBox floatControl">
+                        <option value="m">Male</option>
+                        <option value="w">Women</option>
+                    </select><br>
+                </div> -->
+            </form>
+            <div class="floatGroup">
+                <a onclick="foodOverView.saveFoodClick();"
+                    class="iconButton mdi mdi-light mdi-19px btnSuccess mdi-shaker">Save</a>
+            </div>
+        </div>
 </div>

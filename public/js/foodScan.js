@@ -125,77 +125,77 @@ $(document).ready(() => {
 
 
                                         foodCompositionList.forEach(foodComposition => {
-                                            if (foodComposition.Name.toUpperCase().includes(resp.class.toUpperCase())) {
+                                            if (foodComposition.Name.toUpperCase().includes(resp["class"].toUpperCase())) {
                                                 candidates.push(foodComposition);
                                             }
                                         });
 
                                         if (candidates.length < 1) {
-                                            candidates.push(resp);
-
-                                            console.log(candidates);
-                                            for (let i = 0; i < candidates.length; i++) {
-                                                $selection.append($('<option>', {
-                                                    value: i,
-                                                    text: candidates[i]["class"]
-                                                }));
-                                            }
-
-                                            function createFloatGroup(labelText, control, floatId) {
-                                                let pnl = $("<div class='floatGroup'>");
-                                                let label = $("<span class='floatLabel label' data-float-id='" + floatId + "'>");
-                                                label.html(labelText);
-                                                control.attr("data-float-id", floatId);
-                                                control.css("width", "100%");
-
-                                                pnl.append(label);
-                                                pnl.append(control);
-
-                                                return pnl;
-                                            }
-
-                                            $("#innerFlexBox").append(createFloatGroup("Select", $selection, "selectaautomat"));
-
-                                            let $quantityInput = $("<input class='floatControl' type='number'>");
-                                            $("#innerFlexBox").append(createFloatGroup("Weight in gramms", $quantityInput, "quantity"));
-
-
-                                            let button = $("<a class='floatControl iconButton btnCreate mdi mdi-light mdi-19px mdi-plus-circle-outline'  type='button'>add</a>");
-                                            $("#innerFlexBox").append(createFloatGroup("", button, ""));
-
-                                            initFloats();
-
-                                            button.click(() => {
-                                                let value = $selection.val();
-                                                var userChoice = candidates[value];
-
-                                                var foodEntry = new food(userChoice["class"], userChoice["Carbohydrates, available (g)"], userChoice["Fat, total (g)"], userChoice["Protein (g)"], $quantityInput.val(), userChoice["class"]);
-                                                $.get("getFood").done((foodStock) => {
-
-                                                        let foodList = foodStock.foodList;
-
-                                                        if (foodList) {
-                                                            let filter = foodList.filter(food => food.name === foodEntry.name);
-                                                            if (filter.length < 1) {
-                                                                foodList.push(foodEntry);
-                                                            } else {
-                                                                filter[0].weight += foodEntry.weight;
-                                                            }
-                                                        } else {
-                                                            foodList = [];
-                                                            foodList.push(foodEntry);
-                                                        }
-
-                                                        $.post("postFood", {"foodList": foodList});
-                                                        showFoodList();
-                                                        modal.hide();
-                                                    }
-                                                );
-
-
-                                            });
-
+                                            candidates.push({Name:resp.class, Category: ""});
                                         }
+
+                                        console.log(candidates);
+                                        for (let i = 0; i < candidates.length; i++) {
+                                            $selection.append($('<option>', {
+                                                value: i,
+                                                text: candidates[i].Name
+                                            }));
+                                        }
+
+                                        function createFloatGroup(labelText, control, floatId) {
+                                            let pnl = $("<div class='floatGroup'>");
+                                            let label = $("<span class='floatLabel label' data-float-id='" + floatId + "'>");
+                                            label.html(labelText);
+                                            control.attr("data-float-id", floatId);
+                                            control.css("width", "100%");
+
+                                            pnl.append(label);
+                                            pnl.append(control);
+
+                                            return pnl;
+                                        }
+
+                                        $("#innerFlexBox").append(createFloatGroup("Select", $selection, "selectaautomat"));
+
+                                        let $quantityInput = $("<input class='floatControl' type='number'>");
+                                        $("#innerFlexBox").append(createFloatGroup("Weight in gramms", $quantityInput, "quantity"));
+
+
+                                        let button = $("<a class='floatControl iconButton btnCreate mdi mdi-light mdi-19px mdi-plus-circle-outline'  type='button'>add</a>");
+                                        $("#innerFlexBox").append(createFloatGroup("", button, ""));
+
+                                        initFloats();
+
+                                        button.click(() => {
+                                            let value = $selection.val();
+                                            var userChoice = candidates[value];
+
+                                            var foodEntry = new food(userChoice["Name"], userChoice["Carbohydrates, available (g)"], userChoice["Fat, total (g)"], userChoice["Protein (g)"], $quantityInput.val(), userChoice["Category"]);
+                                            $.get("getFood").done((foodStock) => {
+
+                                                    let foodList = foodStock.foodList;
+
+                                                    if (foodList) {
+                                                        let filter = foodList.filter(food => food.name === foodEntry.name);
+                                                        if (filter.length < 1) {
+                                                            foodList.push(foodEntry);
+                                                        } else {
+                                                            filter[0].weight = parseInt(filter[0].weight )+ parseInt(foodEntry.weight);
+                                                        }
+                                                    } else {
+                                                        foodList = [];
+                                                        foodList.push(foodEntry);
+                                                    }
+
+                                                    $.post("postFood", {"foodList": foodList});
+                                                    showFoodList();
+                                                    modal.hide();
+                                                }
+                                            );
+
+
+                                        });
+
                                     }
                                 );
                             });

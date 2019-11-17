@@ -24,11 +24,11 @@ class FoodRecognition {
     }
 
 
-    checkFood(pathToImage) {
+    checkFood(image) {
         return new Promise((resolve, reject) => {
 
             let params = {
-                url: pathToImage,
+                imagesFile: image,
                 classifierIds: ['food']
             };
 

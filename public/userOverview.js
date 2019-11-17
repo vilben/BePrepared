@@ -18,6 +18,11 @@ class UserOverview {
         for(var i = 0 ; i < elements.length ; i++){
             var item = elements.item(i);
             obj[item.name] = item.value;
+
+            if (item.value == "") {
+                alert("Mising values!");
+                return;
+            }
         }
         obj["id"] = Math.round(Math.random() * 100000000);
         
@@ -84,9 +89,10 @@ class UserOverview {
         var heading = new Array();
         heading[0] = "Name"
         heading[1] = "Surname"
-        heading[2] = "Birth"
-        heading[3] = "Gender"
-        heading[4] = "Actions"
+        heading[2] = "Weigth [kg]"
+        heading[3] = "Birth"
+        heading[4] = "Gender"
+        heading[5] = "Actions"
             
         var stock = this.users
            
@@ -122,6 +128,10 @@ class UserOverview {
             tr.appendChild(td)
 
             var td = document.createElement('TD')
+            td.appendChild(document.createTextNode(stock[i].weigth));
+            tr.appendChild(td)
+
+            var td = document.createElement('TD')
             td.appendChild(document.createTextNode(stock[i].birth));
             tr.appendChild(td)
 
@@ -147,11 +157,12 @@ class UserOverview {
 
 class User {
     
-    constructor(id, name, surName, birth, gender){
+    constructor(id, name, surName, birth, gender, weigth){
         this.id = id;
         this.name = name;
         this.surName = surName;
         this.birth = birth;
         this.gender = gender;
+        this.weigth = weigth;
     }
 }

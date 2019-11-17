@@ -159,6 +159,7 @@ class foodOverView {
 
         });
 
+        showFoodList();
     }
 
     removeFood(foodItem, quantity) {

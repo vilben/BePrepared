@@ -4,15 +4,15 @@ $(document).ready(() => {
     let modal = $("#scanModal");
 
 
-// Get the <span> element that closes the modal
+    // Get the <span> element that closes the modal
     let close = $("#modalClose");
 
-// When the user clicks on <span> (x), close the modal
+    // When the user clicks on <span> (x), close the modal
     close.click(() => {
         modal.css("display", "none")
     });
 
-// When the user clicks anywhere outside of the modal, close it
+    // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.css("display", "none")
@@ -64,7 +64,7 @@ $(document).ready(() => {
 
 
         function stream() {
-            navigator.mediaDevices.getUserMedia({video: true, audio: false})
+            navigator.mediaDevices.getUserMedia({ video: true, audio: false })
                 .then(function (stream) {
                     video.srcObject = stream;
                     video.play();
@@ -130,8 +130,8 @@ $(document).ready(() => {
                                         }
                                     });
 
-                                    if(candidates.length < 1){
-                                        candidates.push({Name : resp, Category: "none"});
+                                    if (candidates.length < 1) {
+                                        candidates.push({ Name: resp, Category: "none" });
                                     }
 
                                     for (let i = 0; i < candidates.length; i++) {
@@ -141,7 +141,7 @@ $(document).ready(() => {
                                         }));
                                     }
 
-                                    function createFloatGroup(labelText, control, floatId){
+                                    function createFloatGroup(labelText, control, floatId) {
                                         let pnl = $("<div class='floatGroup'>");
                                         let label = $("<span class='floatLabel label' data-float-id='" + floatId + "'>")
                                         label.html(labelText);
@@ -156,9 +156,9 @@ $(document).ready(() => {
 
                                     $("#innerFlexBox").append(createFloatGroup("Select", $selection, "selectaautomat"));
                                     // $("#addSelection").css("display", "block");
-                                
 
-                                    let $quantityInput = $("<input class='floatControl' type='text'>");
+
+                                    let $quantityInput = $("<input class='floatControl' type='number'>");
                                     $("#innerFlexBox").append(createFloatGroup("Weight in gramms", $quantityInput, "quantity"));
 
 
@@ -174,19 +174,19 @@ $(document).ready(() => {
                                         var foodEntry = new food(userChoice.Name, userChoice["Carbohydrates, available (g)"], userChoice["Fat, total (g)"], userChoice["Protein (g)"], $quantityInput.val(), userChoice["Category"]);
                                         $.get("getFood").done((foodStock) => {
 
-                                                let foodList = foodStock.foodList;
+                                            let foodList = foodStock.foodList;
 
-                                                let filter = foodList.filter(food => food.name === foodEntry.name);
-                                                if (filter.length < 1) {
-                                                    foodList.push(foodEntry);
-                                                } else {
-                                                    filter[0].weight += foodEntry.weight;
-                                                }
-
-                                                $.post("postFood", {"foodList": foodList});
-                                                showFoodList();
-                                                modal.hide();
+                                            let filter = foodList.filter(food => food.name === foodEntry.name);
+                                            if (filter.length < 1) {
+                                                foodList.push(foodEntry);
+                                            } else {
+                                                filter[0].weight += foodEntry.weight;
                                             }
+
+                                            $.post("postFood", { "foodList": foodList });
+                                            showFoodList();
+                                            modal.hide();
+                                        }
                                         );
 
 

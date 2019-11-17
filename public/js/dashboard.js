@@ -54,6 +54,7 @@ function setActive(activeTab) {
     else if (activeTab === "DisasterSituation") {
         $("#liDisasterSituation").addClass("active");
     }
+    initFloats();
 }
 
 $('#testButton').click(() => {

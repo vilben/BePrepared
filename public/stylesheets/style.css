@@ -74,6 +74,27 @@ body {
   -webkit-transform: translate(5px, -8px) scale(1);
           transform: translate(5px, -8px) scale(1);
   /*background: white;*/
+  background-image: linear-gradient(white 9px, transparent 7px);
+  padding-left: 3px;
+  padding-left: 3px;
+}
+
+.outsetFloatLabel {
+  position: absolute;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: translate(5px, 10px) scale(1);
+          transform: translate(5px, 10px) scale(1);
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  color: rgba(81, 90, 90, 0.76);
+  pointer-events: none;
+  font-weight: bold;
+  /*color: #4e799e;*/
+  color: #515a5a;
+  -webkit-transform: translate(5px, -8px) scale(1);
+          transform: translate(5px, -8px) scale(1);
+  background-image: linear-gradient(white 9px, transparent 7px);
   padding-left: 3px;
   padding-left: 3px;
 }
@@ -502,7 +523,8 @@ body {
           box-shadow: none;
 }
 
-.mdi-19px.mdi-set, .mdi-19px.mdi:before {
+.mdi-19px.mdi-set,
+.mdi-19px.mdi:before {
   font-size: 19px;
   margin: 1px;
 }

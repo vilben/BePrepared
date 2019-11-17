@@ -8,6 +8,7 @@ class UserOverview {
 
     addUserClick(){
         this.showAddUserPanel();
+        initFloats();
     }
 
     saveUserClick(){

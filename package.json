@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@mdi/font": "^4.5.95",
+    "base64url": "^3.0.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "^4.16.4",
@@ -14,7 +15,6 @@
     "ibm-watson": "^5.1.0",
     "morgan": "~1.9.1",
     "node-sass-middleware": "0.11.0",
-    "node-webcam": "^0.5.0",
     "pug": "2.0.0-beta11"
   }
 }

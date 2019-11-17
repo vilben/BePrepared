@@ -3,6 +3,8 @@ $(document).ready(() => {
     let $mainContent = $('#mainContent');
     let baseUrl = window.location.origin;
 
+
+
     $('#showFoodList').click(() => {
         console.log("yippe");
 
@@ -15,7 +17,13 @@ $(document).ready(() => {
         $.get(baseUrl +"/userOverview").done((response) => {
             $mainContent.replaceWith(response);
         })
-    })
+    });
+
+    $('#testButton').click(()=>{
+        $.get(baseUrl + "/takePicture").done((response) =>{
+            console.log(response);
+        })
+    });
 
 
 });

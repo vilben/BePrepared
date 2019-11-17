@@ -21,10 +21,15 @@ class UserOverview {
         }
         obj["id"] = Math.round(Math.random() * 100000000);
         
-        this.users.push(obj);
-        this.saveData()
+        if(this.users){
+            this.users.push(obj);
+        } else {
+            this.users = []
+            this.users.push(obj);
+        }
+        
+        this.saveData();
         this.hideAddUserPanel();
-
     }
     
     hideAddUserPanel(){
@@ -36,24 +41,27 @@ class UserOverview {
     }
 
     removeUser(userId){
-        var index = this.users.map(x => {
-            return x.id;
-        }).indexOf(userId);
-          
-        this.users.splice(index, 1);
+        this.users = this.users.filter(function( obj ) {
+            return obj.id != userId;
+        });
+
         this.saveData()
     }
 
     loadData() {
         $.get("getUsers").done((response) => {
             this.users = response.userList;
-            this.showData();
+
+            if (this.users) {
+                this.showData();
+            } else {
+                $("#userList").html("No users found, add them using the button above!");
+            }            
         });   
         
     }
 
     saveData(){
-
         var jsonData = {
             userList: this.users
         };
@@ -123,7 +131,7 @@ class UserOverview {
 
             var td = document.createElement('TD')
             var a = document.createElement('A');
-            a.setAttribute('class', "conButton mdi mdi-light mdi-19px btnWarning mdi-account-plus");
+            a.setAttribute('class', "iconButton mdi mdi-light mdi-19px btnWarning mdi-account-plus");
             a.setAttribute('onclick',"UserOverview.removeUser(" + stock[i].id + ")")
             a.innerHTML = "Remove";
 

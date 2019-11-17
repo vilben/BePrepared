@@ -561,6 +561,21 @@ body{
     }*/
 }
 
+#mainContent{
+    background-color: $baseWhite;
+    height: 100%;
+    width: 95%;
+    margin: 2.5%;
+    padding: 5px;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+}
+
 .grid {
     display: table;
     border-collapse: separate;
@@ -571,6 +586,7 @@ body{
     background-color: transparent;
     border-bottom-width: thin;
     margin-top: 5px;
+    width: 100%;
 
     &:enabled {
         @extend %foreColor;

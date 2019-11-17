@@ -1,19 +1,10 @@
 <div id="mainContent">
-
-    <script type="text/javascript" src="/public/controls.js"></script>
-    <script type="text/javascript" src="/public/userOverview.js"></script>
-    <script type="text/javascript">
-         initPage();
-            UserOverview = new UserOverview();
-            //$('#addUser').on('click', $('#addUser').css("display","block"))
-    </script>
-
     <div class="floatGroup">
         <h1 class="titleText">User Overview</h1>
     </div>
     <div class="floatGroup">
         <a onclick='UserOverview.addUserClick();'
-           class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-plus">Add
+            class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-plus">Add
             User</a>
     </div>
     <div class="floatGroup" id="userList">
@@ -35,7 +26,7 @@
             </select><br>
         </form>
         <a onclick="UserOverview.saveUserClick();"
-           class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-check">Save</a>
+            class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-check">Save</a>
     </div>
 
 

@@ -104,47 +104,21 @@ router.get("/test", (rey, res) =>{
     var bitmap = fs.createReadStream(file);
 
     foodRecognition.checkFood(bitmap).then((data) => {
-
-        //Todo HACK
-        let foodItemName = data.images[0]["classifiers"][0]["classes"][0]["class"];
-
         let foodItems = data.images[0]["classifiers"][0]["classes"];
         let bestFoodItem = {class: 'non-food', score:0};
         foodItems.forEach((foodItem)=>{
-            console.log(foodItem);
-            if(!bestFoodItem || foodItem.score){
+            if(foodItem.score > bestFoodItem.score){
                 bestFoodItem = foodItem;
             }
         });
-
-
         res.send(bestFoodItem);
 
-    });
-});
-
-router.get('/checkFood', (req, res, next) => {
-    let pathToBanana = "http://www.pngplay.com/wp-content/uploads/1/Banana-PNG-Royalty-Free.png";
-    let foodRecognition = new FoodRecognition();
-    foodRecognition.checkFood(pathToBanana).then((data) => {
-        res.send(data);
-
-        let foodItemName = data.images[0]["classifiers"][0]["classes"][0]["class"];
-        let foodItems = data.images[0]["classifiers"][0]["classes"];
-        foodItems.forEach((foodItem)=>{
-            console.log(foodItem);
-        });
-
-
-
-
-        console.log(foodItemName);
     });
 });
 
 
 app.use('/', router);
 app.listen(8080, () => {
-    console.log("test");
+    console.log("Starting Server ...");
 });
 module.exports = router;

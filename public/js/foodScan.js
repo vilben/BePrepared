@@ -4,15 +4,15 @@ $(document).ready(() => {
     let modal = $("#scanModal");
 
 
-// Get the <span> element that closes the modal
+    // Get the <span> element that closes the modal
     let close = $("#modalClose");
 
-// When the user clicks on <span> (x), close the modal
+    // When the user clicks on <span> (x), close the modal
     close.click(() => {
         modal.css("display", "none")
     });
 
-// When the user clicks anywhere outside of the modal, close it
+    // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.css("display", "none")
@@ -25,7 +25,7 @@ $(document).ready(() => {
         $("#flexBox").html("<video id=\"video\"></video>\n" +
             "                <canvas id=\"canvas\" class=\"canvasHidden\"></canvas>\n" +
             "                <img id=\"image\"/>\n" +
-            "                <input id=\"submitButton\" type=\"button\" value=\"scan\"/>");
+            "                <a class=\"iconButton mdi mdi-light mdi-19px btnCreate mdi-camera-wireless-outline\" id=\"submitButton\" type=\"button\">Scan</a>");
 
         let $modalContent = $("#modalContent");
         modal.css("display", "block");
@@ -64,7 +64,7 @@ $(document).ready(() => {
 
 
         function stream() {
-            navigator.mediaDevices.getUserMedia({video: true, audio: false})
+            navigator.mediaDevices.getUserMedia({ video: true, audio: false })
                 .then(function (stream) {
                     video.srcObject = stream;
                     video.play();
@@ -92,10 +92,10 @@ $(document).ready(() => {
                 context.drawImage(video, 0, 0, width, height);
                 var data = canvas.toDataURL('image/png');
                 photo.setAttribute('src', data);
-                $photo.width(width / 2);
-                $photo.height(height / 2);
+                //$photo.width(width / 2);
+                //$photo.height(height / 2);
 
-                $("#flexBox").get(0).className = "flexBoxRow";
+                //$("#flexBox").get(0).className = "flexBoxRow";
                 $canvas.remove();
                 $video.remove();
                 $("#submitButton").remove();
@@ -115,15 +115,14 @@ $(document).ready(() => {
                     .then((msg) => {
                         $.get("/test")
                             .done((resp) => {
-                                $("#flexBox").append("<div id='innerFlexBox' class='flexBoxColumn'>" +
+                                $("#flexBox").append("<div id='innerFlexBox' class='flexBoxColumn floatGroup'>" +
                                     "</div>");
 
                                 $.get("getFoodComposition").done((foodCompositionList) => {
                                     let candidates = [];
 
-                                    let $selection = $("select");
+                                    let $selection = $("<select class='floatControl'>");
 
-                                    $("#innerFlexBox").append($selection);
 
                                     foodCompositionList.forEach(foodComposition => {
                                         if (foodComposition.Name.toUpperCase().includes(resp.toUpperCase())) {
@@ -131,8 +130,8 @@ $(document).ready(() => {
                                         }
                                     });
 
-                                    if(candidates.length < 1){
-                                        candidates.push({Name : resp, Category: "none"});
+                                    if (candidates.length < 1) {
+                                        candidates.push({ Name: resp, Category: "none" });
                                     }
 
                                     for (let i = 0; i < candidates.length; i++) {
@@ -142,15 +141,31 @@ $(document).ready(() => {
                                         }));
                                     }
 
+                                    function createFloatGroup(labelText, control, floatId) {
+                                        let pnl = $("<div class='floatGroup'>");
+                                        let label = $("<span class='floatLabel label' data-float-id='" + floatId + "'>")
+                                        label.html(labelText);
+                                        control.attr("data-float-id", floatId);
+                                        control.css("width", "100%");
+
+                                        pnl.append(label);
+                                        pnl.append(control);
+
+                                        return pnl;
+                                    }
+
+                                    $("#innerFlexBox").append(createFloatGroup("Select", $selection, "selectaautomat"));
                                     // $("#addSelection").css("display", "block");
+
+
+                                    let $quantityInput = $("<input class='floatControl' type='number'>");
+                                    $("#innerFlexBox").append(createFloatGroup("Weight in gramms", $quantityInput, "quantity"));
+
+
+                                    let button = $("<a class='floatControl iconButton btnCreate mdi mdi-light mdi-19px mdi-plus-circle-outline'  type='button'>add</a>");
+                                    $("#innerFlexBox").append(createFloatGroup("", button, ""));
+
                                     initFloats();
-
-                                    let $quantityInput = $("<input type='text'>");
-                                    $("#innerFlexBox").append($quantityInput);
-
-
-                                    let button = $("<input type='button' value='add'>");
-                                    $("#innerFlexBox").append(button);
 
                                     button.click(() => {
                                         let value = $selection.val();
@@ -159,18 +174,19 @@ $(document).ready(() => {
                                         var foodEntry = new food(userChoice.Name, userChoice["Carbohydrates, available (g)"], userChoice["Fat, total (g)"], userChoice["Protein (g)"], $quantityInput.val(), userChoice["Category"]);
                                         $.get("getFood").done((foodStock) => {
 
-                                                let foodList = foodStock.foodList;
+                                            let foodList = foodStock.foodList;
 
-                                                let filter = foodList.filter(food => food.name === foodEntry.name);
-                                                if (filter.length < 1) {
-                                                    foodList.push(foodEntry);
-                                                } else {
-                                                    filter[0].weight += foodEntry.weight;
-                                                }
-
-                                                $.post("postFood", {"foodList": foodList});
-
+                                            let filter = foodList.filter(food => food.name === foodEntry.name);
+                                            if (filter.length < 1) {
+                                                foodList.push(foodEntry);
+                                            } else {
+                                                filter[0].weight += foodEntry.weight;
                                             }
+
+                                            $.post("postFood", { "foodList": foodList });
+                                            showFoodList();
+                                            modal.hide();
+                                        }
                                         );
 
 

@@ -21,9 +21,6 @@ $(document).ready(() => {
 
 
     $('#scanFoodButton').click(() => {
-        // $.get(baseUrl + "/takePicture").done((response) =>{
-        //     console.log(response);
-        // })
 
         $("#flexBox").html("<video id=\"video\"></video>\n" +
             "                <canvas id=\"canvas\" class=\"canvasHidden\"></canvas>\n" +
@@ -116,13 +113,11 @@ $(document).ready(() => {
                     dataType: 'text',
                 })
                     .then((msg) => {
-                        console.log(msg);
                         $.get("/test")
                             .done((resp) => {
                                 $("#flexBox").append("<div id='innerFlexBox' class='flexBoxColumn'>" +
                                     "</div>");
 
-                                console.log(resp);
                                 $.get("getFoodComposition").done((foodCompositionList) => {
                                     let candidates = [];
 
@@ -141,7 +136,6 @@ $(document).ready(() => {
                                     }
 
                                     for (let i = 0; i < candidates.length; i++) {
-                                        console.log("yeeet");
                                         $selection.append($('<option>', {
                                             value: i,
                                             text: candidates[i].Name

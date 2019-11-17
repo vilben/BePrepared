@@ -1,27 +1,67 @@
-$(document).ready(() => {
-
+function showDashboard() {
     let $mainContent = $('#mainContent');
     let baseUrl = window.location.origin;
+    setActive("Dashboard");
+    $.get(baseUrl + "/dashboard").done((response) => {
+        $mainContent.replaceWith(response);
+    })
+};
 
+function showFoodList() {
+    let $mainContent = $('#mainContent');
+    let baseUrl = window.location.origin;
+    setActive("FoodList");
+    $.get(baseUrl + "/foodOverView").done((response) => {
+        $mainContent.replaceWith(response);
+        foodOverView.showList();
+    })
+    $.get(baseUrl + "/checkFood").done((response) => {
+        console.log("test", response);
+    })
+};
 
-    $('#showFoodList').click(() => {
-        console.log("yippe");
+function showUsers() {
+    let $mainContent = $('#mainContent');
+    let baseUrl = window.location.origin;
+    setActive("Users");
+    $.get(baseUrl + "/userOverview").done((response) => {
+        $mainContent.replaceWith(response);
+        UserOverview.loadData();
+    })
+};
 
-        $.get(baseUrl + "/checkFood").done((response) => {
-            console.log("test", response);
-        })
-    });
+function showDisaster() {
+    let $mainContent = $('#mainContent');
+    let baseUrl = window.location.origin;
+    setActive("DisasterSituation");
+    $.get(baseUrl + "/disaster").done((response) => {
+        $mainContent.replaceWith(response);
+    })
+};
 
-    $('#showUsers').click(() => {
-        $.get(baseUrl + "/userOverview").done((response) => {
-            $mainContent.replaceWith(response);
-        })
-    });
+function setActive(activeTab) {
+    $(".tabPoint").removeClass("active");
+
+    if (activeTab === "Dashboard") {
+        $("#liDashboard").addClass("active");
+    } else if (activeTab === "FoodList") {
+        $("#liFoodList").addClass("active");
+    } else if (activeTab === "Users") {
+        $("#liUsers").addClass("active");
+    } else if (activeTab === "DisasterSituation") {
+        $("#liDisasterSituation").addClass("active");
+    }
+    initFloats();
+}
+
+$(document).ready(() => {
 
     $('#testButton').click(() => {
         // $.get(baseUrl + "/takePicture").done((response) =>{
         //     console.log(response);
         // })
+        let $mainContent = $('#mainContent');
+        let baseUrl = window.location.origin;
 
         var width = 320;
         var height = 0;
@@ -39,9 +79,9 @@ $(document).ready(() => {
         $mainContent.append(canvas);
         $mainContent.append(startButton);
 
-        video.addEventListener('canplay', function(ev){
+        video.addEventListener('canplay', function (ev) {
             if (!streaming) {
-                height = video.videoHeight / (video.videoWidth/width);
+                height = video.videoHeight / (video.videoWidth / width);
 
                 video.setAttribute('width', width);
                 video.setAttribute('height', height);
@@ -112,12 +152,7 @@ $(document).ready(() => {
         $(startButton).click(() => {
             takeShot();
         });
-
     });
 
-
-
-
-});
-
+})
 

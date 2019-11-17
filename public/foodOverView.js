@@ -1,6 +1,12 @@
 class foodOverView {
     constructor() {
         this.showList();
+        this.setListeners(this);
+    }
+
+    setListeners(obj) {
+
+        //  $("#addFoodButton").setAttribute('onclick',"console.log('hello')");
     }
 
     showList() {
@@ -35,17 +41,59 @@ class foodOverView {
             let tr = document.createElement("tr");
             if (alternate) {
                 tr.setAttribute("class", "gridAlterRow");
-            }
-            else {
+            } else {
                 tr.setAttribute("class", "gridRow");
             }
             let td = document.createElement("td");
-            td.innerText = food.name + ": " + food.stock;
+            td.innerText = food.name + ": " + food.weight;
             tr.append(td);
             tbody.append(tr);
         });
         $("#tablePlaceholder").append(table);
 
+    }
+
+    addFoodClick() {
+        this.showAddFoodPanel();
+        initFloats();
+    }
+
+    saveFoodClick() {
+        let foodItem = $("#userInputFoodName").val();
+        let quantity = $("#userInputFoodAmount").val();
+        this.hideAddFoodPanel();
+
+        this.addFood(foodItem, quantity);
+    }
+
+    removeFoodClick() {
+        this.showRemoveFoodPanel();
+        initFloats();
+    }
+
+    removeSaveFoodClick() {
+        this.hideRemoveFoodPanel();
+
+        let foodItem = $("#userInputRemoveFoodName").val();
+        let quantity = $("#userInputRemoveFoodAmount").val();
+
+        this.removeFood(foodItem, quantity);
+    }
+
+    hideAddFoodPanel() {
+        $("#addFoodPanel").css("display", "none");
+    }
+
+    showAddFoodPanel() {
+        $("#addFoodPanel").css("display", "block");
+    }
+
+    hideRemoveFoodPanel() {
+        $("#removeFoodPanel").css("display", "none");
+    }
+
+    showRemoveFoodPanel() {
+        $("#removeFoodPanel").css("display", "block");
     }
 
     addFood(foodItem, quantity) {
@@ -62,26 +110,58 @@ class foodOverView {
         var candidates = [];
 
         foodCompositionList.forEach(foodComposition => {
-            if (foodComposition.Name.includes(foodItem)) {
+            if (foodComposition.Name.toUpperCase().includes(foodItem.toUpperCase())) {
                 candidates.push(foodComposition);
             }
         });
 
         function openSelectionDialog(candidates) {
-            return undefined;
+            return candidates[0];
         }
 
         var userChoice = openSelectionDialog(candidates);
 
+        var foodEntry = new food(userChoice.Name, userChoice["Carbohydrates, available (g)"], userChoice["Fat, total (g)"], userChoice["Protein (g)"], quantity);
 
-        var foodEntry = new food(userChoice.Name, userChoice["Carbohydrates, available (g)"], userChoice["Fat, total (g)"], userChoice["Protein (g)"])
+        $.get("getFood").done((foodStock) => {
 
+            let foodList = foodStock.foodList;
+
+            let filter = foodList.filter(food => food.name === foodEntry.name);
+            if (filter.length < 1) {
+                foodList.push(foodEntry);
+            } else {
+                filter[0].weight += foodEntry.weight;
+            }
+
+            $.post("postFood", {"foodList": foodList}).done(response => {
+                alert("i updated");
+            });
+
+        });
 
     }
 
+    removeFood(foodItem, quantity) {
+        $.get("getFood").done((foodStock) => {
 
-    removeFood() {
-        // foodList.remove()
+            let foodList = foodStock.foodList;
+
+            foodList.forEach(food => {
+                if (food.name === foodItem) {
+                    if (food.weight < quantity) {
+                        foodList = foodList.filter(food.name !== foodItem);
+                    } else {
+                        food.weight -= quantity;
+                    }
+                }
+            });
+
+            $.post("postFood", {"foodList": foodList}).done(response => {
+                alert("i updated");
+            });
+        });
+
     }
 
     readNutritionalValue() {
@@ -92,5 +172,7 @@ class foodOverView {
 $("document").ready(function () {
     let food = new foodOverView();
 });
+
+
 
 

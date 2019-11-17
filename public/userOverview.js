@@ -8,6 +8,7 @@ class UserOverview {
 
     addUserClick(){
         this.showAddUserPanel();
+        initFloats();
     }
 
     saveUserClick(){
@@ -131,7 +132,7 @@ class UserOverview {
 
             var td = document.createElement('TD')
             var a = document.createElement('A');
-            a.setAttribute('class', "iconButton mdi mdi-light mdi-19px btnWarning mdi-account-plus");
+            a.setAttribute('class', "iconButton mdi mdi-light mdi-19px btnDanger mdi-account-remove");
             a.setAttribute('onclick',"UserOverview.removeUser(" + stock[i].id + ")")
             a.innerHTML = "Remove";
 

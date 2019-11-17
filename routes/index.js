@@ -26,6 +26,11 @@ router.get('/', function (req, res, next) {
 router.get('/dashboard', function (req, res, next) {
     res.sendFile(path.join(publicRoute + '/html/dashboard.html'));
 });
+
+router.get('/disaster', function (req, res, next) {
+    res.sendFile(path.join(publicRoute + '/html/disaster.html'));
+});
+
 router.get('/userOverview', function (req, res, next) {
     res.sendFile(path.join(publicRoute + '/html/userOverview.html'));
     // res.render('index', { title: 'Express' });
@@ -45,6 +50,13 @@ router.get('/getFood', function (req, res, next) {
     // res.render('index', { title: 'Express' });
 });
 
+router.post('/postFood', function (req, res, next) {
+    filePath = path.join(publicRoute + '/foodStock.json');
+    fs.writeFile(filePath, JSON.stringify(req.body), function () {
+        res.end();
+    });
+
+});
 router.get('/getFoodComposition', function (req, res, next) {
     res.sendFile(path.join(publicRoute + '/foodComposition.json'));
 });

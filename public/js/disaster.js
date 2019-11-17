@@ -96,12 +96,13 @@ class DisasterSituation {
 
     calcDiet(){
 
+        var html = ""
         var foodSortedByDaysLeft = this.foodList.sort((a,b) => (parseInt(a.daysLeft) > parseInt(b.daysLeft)) ? 1 : ((parseInt(b.daysLeft) > parseInt(a.daysLeft)) ? -1 : 0)); 
         var maxDays = Math.round(this.daysAvailableCalories);
         var caloriesPerDay = this.minCal * this.users;
         var currentCalories = 0
         for(var i = 1; i <= maxDays; i++){
-            console.log("Day: " + i)
+            html = html + "Day: " + i + "<br>";
             var foodNoLongerStorable = foodSortedByDaysLeft.filter(function( obj ) {
                 return obj.daysLeft <= i;
             })
@@ -120,6 +121,7 @@ class DisasterSituation {
                     currentCalories += caloriesAvailable;
                     foodNoLongerStorable.shift();
                     foodSortedByDaysLeft.shift();
+                    html = html + "Eat: " + currentFood.name + " how many: " + currentFood.weight + " resulting in " + caloriesAvailable + "<br>"
                     console.log("Eat: " + currentFood.name + " how many: " + currentFood.weight + " resulting in " + caloriesAvailable)
                 } else {
                     var currentFood = foodSortedByDaysLeft[0];
@@ -137,11 +139,13 @@ class DisasterSituation {
 
                     if (foodAmount < currentFood.weight){
 
+                        html = html + "Eat: " + currentFood.name + " how many: " + foodAmount + " resulting in " + foodAmount / 100 * caloriesPer100G + "<br>"
                         console.log("Eat: " + currentFood.name + " how many: " + foodAmount + " resulting in " + foodAmount / 100 * caloriesPer100G)
                         foodSortedByDaysLeft[0].weight = Math.round(foodSortedByDaysLeft[0].weight - foodAmount);
 
                         currentCalories += Math.round(foodAmount / 100 * caloriesPer100G);
                     } else {
+                        html = html + "Eat: " + currentFood.name + " how many: " + currentFood.weight + " resulting in " + currentFood.weight / 100 * caloriesPer100G + "<br>"
                         console.log("Eat: " + currentFood.name + " how many: " + currentFood.weight + " resulting in " + currentFood.weight / 100 * caloriesPer100G)
                         currentCalories += Math.round(currentFood.weight / 100 * caloriesPer100G);
 
@@ -150,5 +154,7 @@ class DisasterSituation {
                 }
             }
         }
+
+        $("#DietPlan").html(html);
     }
 }

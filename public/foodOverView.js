@@ -106,7 +106,7 @@ class foodOverView {
 
 
     removeFood() {
-        // foodList.remove()
+
     }
 
     readNutritionalValue() {

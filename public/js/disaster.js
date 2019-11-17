@@ -19,7 +19,6 @@ class DisasterSituation {
 
     calculateValues(){
         this.calcTotalValues();
-        this.calcTotalUsers();
         this.calcCalories();
         this.calcDaysAvailable();
         this.calcAvailablePerDay();
@@ -95,22 +94,124 @@ class DisasterSituation {
 
     }
 
+
     calcDiet(){
 
         var foodSortedByDaysLeft = this.foodList.sort((a,b) => (parseInt(a.daysLeft) > parseInt(b.daysLeft)) ? 1 : ((parseInt(b.daysLeft) > parseInt(a.daysLeft)) ? -1 : 0)); 
+        var maxDays = 3;
+        var caloriesPerDay = this.minCal * this.users;
 
-        var foodNextDay =  foodSortedByDaysLeft.filter(function( obj ) {
-            return obj.daysLeft <= 1;
-        });
-        var foodNext3Days =  foodSortedByDaysLeft.filter(function( obj ) {
-            return obj.daysLeft > 1 && obj.daysLeft <= 3;
-        });
-        var foodNext7Days =  foodSortedByDaysLeft.filter(function( obj ) {
-            return obj.daysLeft > 3 && obj.daysLeft <= 7;
-        });
-        var foodNext14Days =  foodSortedByDaysLeft.filter(function( obj ) {
-            return obj.daysLeft > 7 && obj.daysLeft <= 14;
-        });
+        for(var i = 0; i <= maxDays; i++){
+            console.log("Day: " + i)
+            var currentCalories = 0;
+            var foodNoLongerStorable = foodSortedByDaysLeft.filter(function( obj ) {
+                return obj.daysLeft <= i;
+            })
+
+            while (currentCalories < caloriesPerDay){
+                if(foodNoLongerStorable.length != 0){
+                    var currentFood = foodNoLongerStorable[0];
+                    var caloriesPer100G = currentFood.carbohydrates * 4;
+                    caloriesPer100G += currentFood.fat * 9;
+                    caloriesPer100G += currentFood.proteins * 4;
+    
+                    
+                    var caloriesAvailable = caloriesPer100G * currentFood.weight / 100
+                    currentCalories += caloriesAvailable;
+                    foodNoLongerStorable.shift();
+                    console.log("Eat: " + currentFood.name + " how many: " + currentFood.weight + " resulting in " + caloriesAvailable)
+                } else {
+                    var currentFood = foodSortedByDaysLeft[0];
+
+                    var caloriesPer100G = currentFood.carbohydrates * 4;
+                    caloriesPer100G += currentFood.fat * 9;
+                    caloriesPer100G += currentFood.proteins * 4;
+
+                    caloriesPer100G = Math.round(caloriesPer100G);
+
+                    var caloriesAvailable = Math.round(caloriesPer100G * currentFood.weight / 100);
+                    var caloriesMissing = Math.round(caloriesPerDay - currentCalories);
+
+                    var foodAmount = Math.round(caloriesMissing / caloriesPer100G);
+                    console.log("In Else CalMissing:" + caloriesMissing);
+                    console.log("In Else Cal100G:" + caloriesPer100G);
+                    console.log("Food Amount:" + foodAmount);
+
+                    if (foodAmount < currentFood.weight){
+
+                        console.log("Eat: " + currentFood.name + " how many: " + foodAmount + " resulting in " + foodAmount / 100 * caloriesPer100G)
+                        foodSortedByDaysLeft[0].weight = Math.round(foodSortedByDaysLeft[0].weight - foodAmount);
+
+                        currentCalories += Math.round(foodAmount / 100 * caloriesPer100G);
+                    } else {
+                        console.log("Eat: " + currentFood.name + " how many: " + currentFood.weight + " resulting in " + currentFood.weight / 100 * caloriesPer100G)
+                        currentCalories += Math.round(currentFood.weight / 100 * caloriesPer100G);
+
+                        foodSortedByDaysLeft.shift();
+                    }
+                }
+
+                console.log(currentCalories);
+            }
+        }
+
+    }
+    calcDiet2(){
+
+        var foodSortedByDaysLeft = this.foodList.sort((a,b) => (parseInt(a.daysLeft) > parseInt(b.daysLeft)) ? 1 : ((parseInt(b.daysLeft) > parseInt(a.daysLeft)) ? -1 : 0)); 
+        var maxDays = 3;
+        var caloriesPerDay = this.minCal;
+
+        for(var i = 0; i <= maxDays; i++){
+            var toEat = []
+            var foodNoLongerStorable = foodSortedByDaysLeft.filter(function( obj ) {
+                return obj.daysLeft <= i;
+            })
+
+            var currentCalories = 0;
+
+            while (currentCalories < caloriesPerDay){
+
+                if (foodNoLongerStorable.length != 0){
+                    currentCalories += foodNoLongerStorable[0].carbohydrates * foodNoLongerStorable[0].weight * 4;
+                    currentCalories += foodNoLongerStorable[0].fat * foodNoLongerStorable[0].weight * 9;
+                    currentCalories += foodNoLongerStorable[0].proteins * foodNoLongerStorable[0].weight * 4;
+
+                    toEat.push(foodNoLongerStorable[0]);
+                    foodNoLongerStorable.shift();
+
+                } else {
+                    var currentFood = foodSortedByDaysLeft[0];
+                    var caloriesAvailable = currentFood.carbohydrates * currentFood.weight / 100 * 4;
+                    caloriesAvailable += currentFood.fat * currentFood.weight / 100 * 9;
+                    caloriesAvailable += currentFood.proteins * currentFood.weight / 100 * 4;
+
+                    console.log("caloriesAvailable: " + caloriesAvailable);
+                    var caloriesPer100G = currentFood.carbohydrates * 4;
+                    caloriesPer100G += currentFood.fat * 9;
+                    caloriesPer100G += currentFood.proteins * 4;
+                    console.log("caloriesPer100G: " + caloriesPer100G);
+                    var gramsNeeded = caloriesPerDay / caloriesPer100G * 100;
+                    console.log("gramsNeeded: " + gramsNeeded);
+
+                    if (gramsNeeded < currentFood.weight){
+                        console.log("Eat: " + gramsNeeded + " " + currentFood.name)
+                        foodSortedByDaysLeft[0].weight =  currentFood.weight - gramsNeeded * 3;
+                    } else {
+                        console.log("Eat: " + currentFood.name)
+                        foodSortedByDaysLeft.shift();
+                    }
+                    
+                    currentCalories += caloriesAvailable;
+                }
+
+                currentCalories++;
+
+                
+            }
+            
+            console.log(toEat);
+        }
 
     }
 }

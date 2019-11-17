@@ -15,24 +15,31 @@
         <form id="newUserForm">
             <div class="floatGroup">
                 <span class="label floatLabel" runat="server" data-float-id="txtName">First name</span>
-                <input
-                    type="text" class="textBox floatControl" runat="server" autocomplete="off" data-float-id="txtName"
-                    style="width:100%;">
+                <input type="text" class="textBox floatControl" runat="server" autocomplete="off"
+                    data-float-id="txtName" style="width:100%;" name="name">
             </div>
-            First name:<br>
-            <input type="text" name="name"><br>
-            Last name:<br>
-            <input type="text" name="surName"><br>
-            Date of birth:<br>
-            <input type="date" name="birth"><br>
-            Gender:<br>
-            <select name="gender">
-                <option value="m">Male</option>
-                <option value="w">Women</option>
-            </select><br>
+            <div class="floatGroup">
+                <span class="label floatLabel" runat="server" data-float-id="txtLastName">Last name</span>
+                <input type="text" class="textBox floatControl" runat="server" autocomplete="off"
+                    data-float-id="txtLastName" style="width:100%;" name="surName">
+            </div>
+            <div class="floatGroup">
+                <span class="label outsetFloatLabel" runat="server" data-float-id="txtBirth">Date of birth</span>
+                <input type="date" class="textBox floatControl" runat="server" autocomplete="off"
+                    data-float-id="txtBirth" style="width:100%;" name="birth">
+            </div>
+            <div class="floatGroup">
+                <span class="label outsetFloatLabel" runat="server" data-float-id="txtGender">Gender</span>
+                <select name="gender" class="textBox floatControl">
+                    <option value="m">Male</option>
+                    <option value="w">Women</option>
+                </select><br>
+            </div>
         </form>
-        <a onclick="UserOverview.saveUserClick();"
-            class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-check">Save</a>
+        <div class="floatGroup">
+            <a onclick="UserOverview.saveUserClick();"
+                class="iconButton mdi mdi-light mdi-19px btnSuccess mdi-account-check">Save</a>
+        </div>
     </div>
 
 

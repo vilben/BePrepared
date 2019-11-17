@@ -4,14 +4,14 @@ class food{
     minFat = 20;
     
     /*
-     * carbohydrates, proteins and fat per 100 gramms and stock
+     * carbohydrates, proteins and fat per 100 gramms and weight
      */
-    constructor(name, carbohydrates, proteins, fat, stock){
+    constructor(name, carbohydrates, proteins, fat, weight){
         this.name = name;
         this.carbohydrates = carbohydrates;
         this.proteins = proteins;
         this.fat = fat;
-        this.stock= stock;
+        this.weight= weight;
     }
 
     getNutritionValue(){

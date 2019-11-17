@@ -1,6 +1,12 @@
 class foodOverView {
     constructor() {
         this.showList();
+        this.setListeners(this);
+    }
+
+    setListeners(obj) {
+
+        //  $("#addFoodButton").setAttribute('onclick',"console.log('hello')");
     }
 
     showList() {
@@ -35,17 +41,33 @@ class foodOverView {
             let tr = document.createElement("tr");
             if (alternate) {
                 tr.setAttribute("class", "gridAlterRow");
-            }
-            else {
+            } else {
                 tr.setAttribute("class", "gridRow");
             }
             let td = document.createElement("td");
-            td.innerText = food.name + ": " + food.stock;
+            td.innerText = food.name + ": " + food.weight;
             tr.append(td);
             tbody.append(tr);
         });
         $("#tablePlaceholder").append(table);
 
+    }
+
+    addFoodClick(){
+        this.showAddFoodPanel();
+        initFloats();
+    }
+
+    saveFoodClick(){
+        this.hideAddFoodPanel();
+    }
+
+    hideAddFoodPanel(){
+        $("#addFoodPanel").css("display", "none");
+    }
+    
+    showAddFoodPanel(){
+        $("#addFoodPanel").css("display", "block");
     }
 
     addFood(foodItem, quantity) {
@@ -62,26 +84,43 @@ class foodOverView {
         var candidates = [];
 
         foodCompositionList.forEach(foodComposition => {
-            if (foodComposition.Name.includes(foodItem)) {
+            if (foodComposition.Name.toUpperCase().includes(foodItem.toUpperCase())) {
                 candidates.push(foodComposition);
             }
         });
 
         function openSelectionDialog(candidates) {
-            return undefined;
+            return candidates[0];
         }
 
         var userChoice = openSelectionDialog(candidates);
 
 
-        var foodEntry = new food(userChoice.Name, userChoice["Carbohydrates, available (g)"], userChoice["Fat, total (g)"], userChoice["Protein (g)"])
+        var foodEntry = new food(userChoice.Name, userChoice["Carbohydrates, available (g)"], userChoice["Fat, total (g)"], userChoice["Protein (g)"], quantity);
+
+        $.get("getFood").done((foodStock) => {
+
+            let foodList = foodStock.foodList;
+
+            let filter = foodList.filter(food => food.name === foodEntry.name);
+            if (filter.length < 1) {
+                foodList.push(foodEntry);
+            } else {
+                filter[0].weight += foodEntry.weight;
+            }
+
+            $.post("postFood", {"foodList" : foodList}).done(response => {
+                alert("i updated");
+            })
+
+        });
 
 
     }
 
 
     removeFood() {
-        // foodList.remove()
+
     }
 
     readNutritionalValue() {
@@ -92,5 +131,7 @@ class foodOverView {
 $("document").ready(function () {
     let food = new foodOverView();
 });
+
+
 
 

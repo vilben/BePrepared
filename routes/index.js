@@ -51,6 +51,13 @@ router.get('/getFood', function (req, res, next) {
     // res.render('index', { title: 'Express' });
 });
 
+router.post('/postFood', function (req, res, next) {
+    filePath = path.join(publicRoute + '/foodStock.json');
+    fs.writeFile(filePath, JSON.stringify(req.body), function () {
+        res.end();
+    });
+
+});
 router.get('/getFoodComposition', function (req, res, next) {
     res.sendFile(path.join(publicRoute + '/foodComposition.json'));
 });

@@ -121,7 +121,7 @@ class foodOverView {
 
         var userChoice = openSelectionDialog(candidates);
 
-        var foodEntry = new food(userChoice.Name, userChoice["Carbohydrates, available (g)"], userChoice["Fat, total (g)"], userChoice["Protein (g)"], quantity);
+        var foodEntry = new food(userChoice.Name, userChoice["Carbohydrates, available (g)"], userChoice["Fat, total (g)"], userChoice["Protein (g)"], quantity, userChoice["Category"]);
 
         $.get("getFood").done((foodStock) => {
 

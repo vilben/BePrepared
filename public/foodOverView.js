@@ -149,8 +149,8 @@ class foodOverView {
 
             foodList.forEach(food => {
                 if (food.name === foodItem) {
-                    if (food.weight < quantity) {
-                        foodList = foodList.filter(food.name !== foodItem);
+                    if (parseInt(food.weight) < parseInt(quantity)) {
+                        foodList = foodList.filter(food => food.name !== foodItem);
                     } else {
                         food.weight -= quantity;
                     }

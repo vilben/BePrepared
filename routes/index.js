@@ -6,15 +6,14 @@ const projectRoot = path.resolve(__dirname, '../');
 const publicRoute = path.resolve(projectRoot + '/public');
 const fs = require('fs');
 const bodyParser = require('body-parser');
-const Camera = require(publicRoute + '/camera/Camera');
-
-let camera = new Camera();
 
 app.use('public', express.static(publicRoute));
 app.use('/', express.static(projectRoot));
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(
     bodyParser.urlencoded({
-        extended: true
+        extended: true,
+        limit: '20mb',
     })
 );
 app.use(bodyParser.json());
@@ -62,10 +61,46 @@ router.post('/getUsers', function (req, res) {
     });
 });
 
+router.post('/savePicture', (req, res) => {
 
-router.get('/takePicture', (req, res)=>{
-    res.send(camera.takeShot());
+
+    function Base64DecodeUrl(str){
+        str = (str + '===').slice(0, str.length + (str.length % 4));
+        return str.replace(/-/g, '+').replace(/_/g, '/');
+    }
+
+    let filePath = path.join(publicRoute + '/camera/file.png');
+    let baseString = Base64DecodeUrl(Object.keys(req.body)[0]).replace(/^data:image\/\w+;base64,/, "");
+
+    fs.writeFile(filePath, baseString, 'base64', function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('File created');
+        }
+    });
 });
+
+router.get('/getPicture', (req, res) => {
+    res.sendFile(publicRoute+'/camera/file.png');
+});
+
+router.get("/test", (rey, res) =>{
+    let foodRecognition = new FoodRecognition();
+
+    let file = publicRoute + "/camera/file.png";
+
+    var bitmap = fs.createReadStream(file);
+
+    foodRecognition.checkFood(bitmap).then((data) => {
+        res.send(data);
+
+        //Todo HACK
+        let foodItemName = data.images[0]["classifiers"][0]["classes"][0]["class"];
+
+        console.log(foodItemName);
+    });
+})
 
 router.get('/checkFood', (req, res, next) => {
     let pathToBanana = "http://www.pngplay.com/wp-content/uploads/1/Banana-PNG-Royalty-Free.png";

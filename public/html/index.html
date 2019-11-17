@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Dashboard</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="/public/stylesheets/style.css">
-    <link rel="stylesheet"  type="text/css" href="/public/stylesheets/materialdesignicons.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/public/stylesheets/materialdesignicons.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="/public/js/dashboard.js"></script>
 
-    <link rel="stylesheet"  type="text/css" href="/public/stylesheets/dashboard.css"/>
-    <link rel="stylesheet"  type="text/css" href="/public/stylesheets/materialdesignicons.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/public/stylesheets/dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="/public/stylesheets/materialdesignicons.min.css" />
     <script type="text/javascript" src="/public/controls.js"></script>
     <script type="text/javascript" src="/public/userOverview.js"></script>
     <script type="text/javascript" src="/public/foodOverView.js"></script>
@@ -25,50 +26,66 @@
             foodOverView = new foodOverView();
         });
     </script>
+    <style>
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        a:hover{
+            text-decoration: none;
+            color: white;
+        }
+    </style>
 </head>
+
 <body>
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <!-- <span class="icon-bar mdi mdi-19px mdi-light mdi-view-dashboard "></span>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <!-- <span class="icon-bar mdi mdi-19px mdi-light mdi-view-dashboard "></span>
                 <span class="icon-bar mdi mdi-19px mdi-light mdi-hamburger"></span>
                 <span class="icon-bar mdi mdi-19px mdi-light mdi-account-search"></span>
                 <span class="icon-bar mdi mdi-19px mdi-light mdi-zodiac-sagittarius"></span> -->
-            </button>
-            <a class="navbar-brand mdi mdi-19px mdi-light mdi-podcast" href="#"></a>
+                </button>
+                <a class="navbar-brand mdi mdi-19px mdi-light mdi-podcast" href="#"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="tabPoint active" id="liDashboard"><a onclick="showDashboard();"
+                            href="#showDashboard">Dashboard</a></li>
+                    <li class="tabPoint" id="liFoodList"><a onclick="showFoodList();" href="#showFoodList"
+                            id="showFoodList">Food List</a></li>
+                    <li class="tabPoint" id="liUsers"><a onclick="showUsers();" href="#showUsers"
+                            id="showUsers">Users</a></li>
+                    <li class="tabPoint" id="liDisasterSituation"><a onclick="showDisaster();"
+                            href="#showDisasterSituation" id="showDisasterSituation">Disaster situation</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li class="tabPoint active" id="liDashboard" ><a onclick="showDashboard();"  href="#showDashboard">Dashboard</a></li>
-                <li class="tabPoint" id="liFoodList" ><a onclick="showFoodList();" href="#showFoodList" id="showFoodList">Food List</a></li>
-                <li class="tabPoint" id="liUsers" ><a onclick="showUsers();" href="#showUsers" id="showUsers">Users</a></li>
-                <li class="tabPoint" id="liDisasterSituation" ><a onclick="showDisaster();" href="#showDisasterSituation" id="showDisasterSituation">Disaster situation</a></li>
-            </ul>
-        </div>
+    </nav>
+
+    <div id="mainContent">
+        <h1 class="titleText">Dashboard</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+            ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+            deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+            ut aliquip ex ea commodo consequat.</p>
+        <hr>
+        <h3>Test</h3>
+        <p>Lorem ipsum...</p>
+
+        <input id="testButton" type="button" />
     </div>
-</nav>
 
-<div id="mainContent">
-    <h1 class="titleText" >Dashboard</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-        ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-        deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-        ut aliquip ex ea commodo consequat.</p>
-    <hr>
-    <h3>Test</h3>
-    <p>Lorem ipsum...</p>
-
-    <input id="testButton" type="button"/>
-</div>
-
-<footer class="container-fluid text-center">
-    <p>Copyright &copy; BePrepared! 2019</p>
-</footer>
+    <footer class="container-fluid text-center">
+        <p>Copyright &copy; BePrepared! 2019</p>
+    </footer>
 </body>
+
 </html>

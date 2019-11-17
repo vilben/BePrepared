@@ -1,26 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>FoodOverView</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/public/stylesheets/style.css">
-    <link rel="stylesheet" type="text/css" href="/public/stylesheets/materialdesignicons.min.css" />
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-    <script type="text/javascript" src="/public/foodOverView.js"></script>
-    <script type="text/javascript" src="/public/js/food.js"></script>
-    <script type="text/javascript">
-        console.log("Script");
-    </script>
-
-
-</head>
-
-<body>
-
+<div id="mainContent">
     <div class="floatGroup">
-        <a id="addFoodButton" class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-plus">Add Food</a>
+        <a onclick="foodOverView.addFood();" id="addFoodButton" class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-plus">Add Food</a>
         <a id="scanFoodButton" class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-plus">Scan Food</a>
         <a id="removeFoodButton" class="iconButton mdi mdi-light mdi-19px btnWarning mdi-account-plus">Remove Food</a>
     </div>
@@ -29,8 +9,4 @@
     <div class="floatGroup" id="tablePlaceholder">
 
     </div>
-
-
-</body>
-
-</html>
+</div>

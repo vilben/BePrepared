@@ -19,6 +19,7 @@ class DisasterSituation {
         this.calcTotalValues();
         this.calcTotalUsers();
         this.calcDaysAvailable();
+        this.calcAvailablePerDay();
     }
 
     getFoods(){
@@ -70,9 +71,17 @@ class DisasterSituation {
     }
 
     calcDaysAvailable(){
-        
-        this.daysAvailable = this.carbohydrates / (this.users * this.minCal) + 3;
-        $("#daysAvailable").html(this.daysAvailable);
+        this.daysAvailableCarbs = this.carbohydrates / (this.users * this.minCal) + 3;
+        $("#daysAvailable").html("Days available using carbohydrates: " + this.daysAvailableCarbs);
+    }
+
+    calcAvailablePerDay(){
+        var availableFatPerDay = this.fat / this.daysAvailableCarbs / this.users;
+        var availableProteinPerDay = this.proteins / this.daysAvailableCarbs / this.users;
+
+        $("#FatPerDay").html("Days available using carbohydrates: " + availableFatPerDay);
+        $("#ProteinsPerDay").html("Days available using carbohydrates: " + availableProteinPerDay);
+
     }
 
 }

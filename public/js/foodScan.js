@@ -1,8 +1,31 @@
 $(document).ready(() => {
+
+
+    let modal = $("#scanModal");
+
+
+// Get the <span> element that closes the modal
+    let span = modal.find(".close");
+
+// When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.css("display", "none")
+    };
+
+// When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.css("display", "none")
+        }
+    };
+
+
     $('#scanFoodButton').click(() => {
         // $.get(baseUrl + "/takePicture").done((response) =>{
         //     console.log(response);
         // })
+        modal.css("display", "block");
+
         let $mainContent = $('#mainContent');
         let baseUrl = window.location.origin;
 

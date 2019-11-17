@@ -119,6 +119,19 @@ class foodOverView {
             }
         });
 
+        function createFloatGroup(labelText, control, floatId) {
+            let pnl = $("<div class='floatGroup'>");
+            let label = $("<span class='floatLabel label' data-float-id='" + floatId + "'>");
+            label.html(labelText);
+            control.attr("data-float-id", floatId);
+            control.css("width", "100%");
+
+            pnl.append(label);
+            pnl.append(control);
+
+            return pnl;
+        }
+
         function openSelectionDialog(candidates) {
             for (let i = 0; i < candidates.length; i++) {
                 $("#selection").append($("<option>", {

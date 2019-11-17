@@ -1,4 +1,22 @@
 <div id="mainContent">
+    <div id="scanModal" class="modal">
+        <!-- Modal content -->
+        <div id="modalContent" class="modal-content">
+            <span id="modalClose" class="close">&times;</span>
+            <p>Scan your food</p>
+            <div id="flexBox" class="flexBoxColumn">
+                <video id="video"></video>
+                <canvas id="canvas" class="canvasHidden"></canvas>
+                <img id="image"/>
+                <input id="submitButton" type="button" value="scan"/>
+            </div>
+        </div>f
+
+    </div>
+
+    <script type="text/javascript" src="/public/js/foodScan.js"></script>
+
+
     <div class="floatGroup">
         <a onclick="foodOverView.addFoodClick();" id="addFoodButton"
            class="iconButton mdi mdi-light mdi-19px btnCreate mdi-plus-circle-outline">Add Food</a>
@@ -80,4 +98,7 @@
             <a onclick="foodOverView.manageAfterChoiceSelect();"
                class="iconButton mdi mdi-light mdi-19px btnSuccess mdi-shaker">Confirm Selection</a>
         </div>
+    </div>
+
+
     </div>

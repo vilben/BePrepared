@@ -18,7 +18,6 @@ class DisasterSituation {
     }
 
     calculateValues(){
-        this.calcTotalValues();
         this.calcCalories();
         this.calcDaysAvailable();
         this.calcAvailablePerDay();
@@ -79,8 +78,8 @@ class DisasterSituation {
     }
 
     calcDaysAvailable(){
-        this.daysAvailableCalories = (this.calories / (this.users * this.minCal)) + 3;
-        $("#daysAvailable").html("Calories for days..: " + this.daysAvailableCalories);
+        this.daysAvailableCalories = (this.calories / (this.users * this.minCal));
+        $("#daysAvailable").html("Foods for days..: " + this.daysAvailableCalories);
     }
 
     calcAvailablePerDay(){
@@ -98,17 +97,20 @@ class DisasterSituation {
     calcDiet(){
 
         var foodSortedByDaysLeft = this.foodList.sort((a,b) => (parseInt(a.daysLeft) > parseInt(b.daysLeft)) ? 1 : ((parseInt(b.daysLeft) > parseInt(a.daysLeft)) ? -1 : 0)); 
-        var maxDays = 3;
+        var maxDays = Math.round(this.daysAvailableCalories);
         var caloriesPerDay = this.minCal * this.users;
-
-        for(var i = 0; i <= maxDays; i++){
+        var currentCalories = 0
+        for(var i = 1; i <= maxDays; i++){
             console.log("Day: " + i)
-            var currentCalories = 0;
             var foodNoLongerStorable = foodSortedByDaysLeft.filter(function( obj ) {
                 return obj.daysLeft <= i;
             })
 
-            while (currentCalories < caloriesPerDay){
+            currentCalories = 0;
+            while (currentCalories < (caloriesPerDay - 5) && foodSortedByDaysLeft.length > 0){
+
+                console.log(currentCalories)
+                console.log(caloriesPerDay)
                 if(foodNoLongerStorable.length != 0){
                     var currentFood = foodNoLongerStorable[0];
                     var caloriesPer100G = currentFood.carbohydrates * 4;
@@ -119,6 +121,7 @@ class DisasterSituation {
                     var caloriesAvailable = caloriesPer100G * currentFood.weight / 100
                     currentCalories += caloriesAvailable;
                     foodNoLongerStorable.shift();
+                    foodSortedByDaysLeft.shift();
                     console.log("Eat: " + currentFood.name + " how many: " + currentFood.weight + " resulting in " + caloriesAvailable)
                 } else {
                     var currentFood = foodSortedByDaysLeft[0];
@@ -132,10 +135,7 @@ class DisasterSituation {
                     var caloriesAvailable = Math.round(caloriesPer100G * currentFood.weight / 100);
                     var caloriesMissing = Math.round(caloriesPerDay - currentCalories);
 
-                    var foodAmount = Math.round(caloriesMissing / caloriesPer100G);
-                    console.log("In Else CalMissing:" + caloriesMissing);
-                    console.log("In Else Cal100G:" + caloriesPer100G);
-                    console.log("Food Amount:" + foodAmount);
+                    var foodAmount = Math.round(caloriesMissing / caloriesPer100G * 100);
 
                     if (foodAmount < currentFood.weight){
 
@@ -150,8 +150,6 @@ class DisasterSituation {
                         foodSortedByDaysLeft.shift();
                     }
                 }
-
-                console.log(currentCalories);
             }
         }
 

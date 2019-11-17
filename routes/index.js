@@ -74,8 +74,6 @@ router.post('/getUsers', function (req, res) {
 });
 
 router.post('/savePicture', (req, res) => {
-
-
     function Base64DecodeUrl(str){
         str = (str + '===').slice(0, str.length + (str.length % 4));
         return str.replace(/-/g, '+').replace(/_/g, '/');
@@ -89,6 +87,7 @@ router.post('/savePicture', (req, res) => {
             console.log(err);
         } else {
             console.log('File created');
+            res.send("success");
         }
     });
 });
@@ -105,14 +104,14 @@ router.get("/test", (rey, res) =>{
     var bitmap = fs.createReadStream(file);
 
     foodRecognition.checkFood(bitmap).then((data) => {
-        res.send(data);
 
         //Todo HACK
         let foodItemName = data.images[0]["classifiers"][0]["classes"][0]["class"];
 
-        console.log(foodItemName);
+        res.send(foodItemName);
+
     });
-})
+});
 
 router.get('/checkFood', (req, res, next) => {
     let pathToBanana = "http://www.pngplay.com/wp-content/uploads/1/Banana-PNG-Royalty-Free.png";

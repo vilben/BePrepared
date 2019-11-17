@@ -1,0 +1,11 @@
+.canvasHidden{
+    display:none;
+}
+.flexBoxColumn{
+    display: flex;
+    flex-direction: column;
+}
+.flexBoxRow{
+    display: flex;
+    flex-direction: row;
+}

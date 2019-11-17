@@ -6,7 +6,7 @@ $controlEnabled: rgba(0, 0, 0, 0.54);
 //$controlFocus: rgba(0, 0, 0, 0.87);
 $controlFocus: white;
 $controlFocusWithin: rgba(0, 0, 0, 0.87);
-$baseBorderColor: rgba(0,0,0,.15);
+$baseBorderColor: rgba(0, 0, 0, .15);
 $baseColor2: #E0E4E4;
 
 $baseGreen: #4da241;
@@ -152,7 +152,7 @@ $baseWidth: 95%;
 
         &.kpDisabled {
             background-color: rgba($value, .38);
-            border: 1px solid rgba(0,0,0,.15);
+            border: 1px solid rgba(0, 0, 0, .15);
             cursor: not-allowed;
             color: gray;
 
@@ -173,6 +173,7 @@ $baseWidth: 95%;
         color: rgba($value, .9);
         font-size: 15px;
         font-weight: bold;
+
         /*.span {
             color: white;
         }*/
@@ -184,7 +185,7 @@ $baseWidth: 95%;
 
         &.kpDisabled {
             background-color: rgba($value, .38);
-            border: 1px solid rgba(0,0,0,.15);
+            border: 1px solid rgba(0, 0, 0, .15);
             cursor: not-allowed;
 
             &:hover {
@@ -241,7 +242,7 @@ $baseWidth: 95%;
     }
 }
 
-body{
+body {
     background-color: #a6c1c1a3;
     font-family: sans-serif;
 }
@@ -318,6 +319,7 @@ body{
     transition: all .1s ease-in-out;
     color: rgba(81, 90, 90, 0.76);
     pointer-events: none;
+    background-image: linear-gradient(white 9px, transparent 7px);
 
     &.outset {
         font-weight: bold;
@@ -325,10 +327,30 @@ body{
         color: #515a5a;
         transform: translate(5px, -8px) scale(1);
         /*background: white;*/
-        // background-image: linear-gradient(white 9px, transparent 7px);
+        background-image: linear-gradient(white 9px, transparent 7px);
         padding-left: 3px;
         padding-left: 3px;
     }
+}
+
+.outsetFloatLabel {
+    position: absolute;
+    transform-origin: top left;
+    transform: translate(5px, 10px) scale(1);
+    transition: all .1s ease-in-out;
+    color: rgba(81, 90, 90, 0.76);
+    pointer-events: none;
+
+
+    font-weight: bold;
+    /*color: #4e799e;*/
+    color: #515a5a;
+    transform: translate(5px, -8px) scale(1);
+    //background: white;
+    background-image: linear-gradient(white 9px, transparent 7px);
+    padding-left: 3px;
+    padding-left: 3px;
+
 }
 
 .floatControl {
@@ -418,7 +440,7 @@ body{
         color: $controlEnabled;
     }
 
-    &:focus { 
+    &:focus {
         color: $controlFocus;
         background-color: white;
         outline: none;
@@ -517,7 +539,8 @@ body{
 @include createButtonColor($strongOrange, btnStrongWarning);
 
 
-.mdi-19px.mdi-set, .mdi-19px.mdi:before {
+.mdi-19px.mdi-set,
+.mdi-19px.mdi:before {
     font-size: 19px;
     margin: 1px;
 }
@@ -561,7 +584,7 @@ body{
     }*/
 }
 
-#mainContent{
+#mainContent {
     background-color: $baseWhite;
     height: 100%;
     width: 95%;
@@ -569,7 +592,7 @@ body{
     padding: 5px;
 }
 
-footer{
+footer {
     position: fixed;
     bottom: 0;
     height: 50px;
@@ -621,12 +644,12 @@ footer{
             float: right;
         }
 
-        table > tbody > tr > td {
+        table>tbody>tr>td {
             display: inline;
         }
 
-        table > tbody > tr > td > a,
-        table > tbody > tr > td > span {
+        table>tbody>tr>td>a,
+        table>tbody>tr>td>span {
             position: relative;
             float: left;
             padding: 8px 12px;
@@ -639,7 +662,7 @@ footer{
             margin-left: -1px;
         }
 
-        table > tbody > tr > td > span {
+        table>tbody>tr>td>span {
             position: relative;
             float: left;
             padding: 8px 12px;

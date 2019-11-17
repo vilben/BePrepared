@@ -1,8 +1,11 @@
 <div id="mainContent">
     <div class="floatGroup">
-        <a onclick="foodOverView.addFoodClick();" id="addFoodButton" class="iconButton mdi mdi-light mdi-19px btnCreate mdi-plus-circle-outline">Add Food</a>
-        <a id="scanFoodButton" class="iconButton mdi mdi-light mdi-19px btnCreate mdi-camera-wireless-outline">Scan Food</a>
-        <a onclick="foodOverView.removeFoodClick();" id="removeFoodButton" class="iconButton mdi mdi-light mdi-19px btnDanger mdi-minus-circle-outline">Remove Food</a>
+        <a onclick="foodOverView.addFoodClick();" id="addFoodButton"
+           class="iconButton mdi mdi-light mdi-19px btnCreate mdi-plus-circle-outline">Add Food</a>
+        <a id="scanFoodButton" class="iconButton mdi mdi-light mdi-19px btnCreate mdi-camera-wireless-outline">Scan
+            Food</a>
+        <a onclick="foodOverView.removeFoodClick();" id="removeFoodButton"
+           class="iconButton mdi mdi-light mdi-19px btnDanger mdi-minus-circle-outline">Remove Food</a>
     </div>
 
 
@@ -11,31 +14,32 @@
     </div>
 
     <div class="floatGroup" id="addFoodPanel" style="display: none;">
-            <!-- form -->
-            <form id="addFoodForm">
-                <div class="floatGroup">
-                    <span class="label floatLabel" runat="server" data-float-id="txtFoodName">Name</span>
-                    <input id="userInputFoodName" type="text" class="textBox floatControl" runat="server" autocomplete="off"
-                        data-float-id="txtFoodName" style="width:100%;" name="name">
-                </div>
-                <div class="floatGroup">
-                    <span class="label floatLabel" runat="server" data-float-id="txtAmount">Weight in gramms</span>
-                    <input id="userInputFoodAmount" type="text" class="textBox floatControl" runat="server" autocomplete="off"
-                        data-float-id="txtAmount" style="width:100%;" name="amount">
-                </div>
-                <!-- <div class="floatGroup">
-                    <span class="label outsetFloatLabel" runat="server" data-float-id="txtGender">Gender</span>
-                    <select name="gender" class="textBox floatControl">
-                        <option value="m">Male</option>
-                        <option value="w">Women</option>
-                    </select><br>
-                </div> -->
-            </form>
+        <!-- form -->
+        <form id="addFoodForm">
             <div class="floatGroup">
-                <a onclick="foodOverView.saveFoodClick();"
-                    class="iconButton mdi mdi-light mdi-19px btnSuccess mdi-shaker">Save</a>
+                <span class="label floatLabel" runat="server" data-float-id="txtFoodName">Name</span>
+                <input id="userInputFoodName" type="text" class="textBox floatControl" runat="server" autocomplete="off"
+                       data-float-id="txtFoodName" style="width:100%;" name="name">
             </div>
+            <div class="floatGroup">
+                <span class="label floatLabel" runat="server" data-float-id="txtAmount">Weight in gramms</span>
+                <input id="userInputFoodAmount" type="text" class="textBox floatControl" runat="server"
+                       autocomplete="off"
+                       data-float-id="txtAmount" style="width:100%;" name="amount">
+            </div>
+            <!-- <div class="floatGroup">
+                <span class="label outsetFloatLabel" runat="server" data-float-id="txtGender">Gender</span>
+                <select name="gender" class="textBox floatControl">
+                    <option value="m">Male</option>
+                    <option value="w">Women</option>
+                </select><br>
+            </div> -->
+        </form>
+        <div class="floatGroup">
+            <a onclick="foodOverView.saveFoodClick();"
+               class="iconButton mdi mdi-light mdi-19px btnSuccess mdi-shaker">Save</a>
         </div>
+    </div>
 
 
     <div class="floatGroup" id="removeFoodPanel" style="display: none;">
@@ -43,12 +47,14 @@
         <form id="removeFoodForm">
             <div class="floatGroup">
                 <span class="label floatLabel" runat="server" data-float-id="txtFoodName">Name</span>
-                <input id="userInputRemoveFoodName" type="text" class="textBox floatControl" runat="server" autocomplete="off"
+                <input id="userInputRemoveFoodName" type="text" class="textBox floatControl" runat="server"
+                       autocomplete="off"
                        data-float-id="txtFoodName" style="width:100%;" name="name">
             </div>
             <div class="floatGroup">
                 <span class="label floatLabel" runat="server" data-float-id="txtAmount">Weight in gramms</span>
-                <input id="userInputRemoveFoodAmount" type="text" class="textBox floatControl" runat="server" autocomplete="off"
+                <input id="userInputRemoveFoodAmount" type="text" class="textBox floatControl" runat="server"
+                       autocomplete="off"
                        data-float-id="txtAmount" style="width:100%;" name="amount">
             </div>
             <!-- <div class="floatGroup">
@@ -63,6 +69,15 @@
             <a onclick="foodOverView.removeSaveFoodClick();"
                class="iconButton mdi mdi-light mdi-19px btnSuccess mdi-shaker">Save</a>
         </div>
+    </div>
 
+    <div class="floatGroup" id="addSelection" style="display: none;">
+        <select id="selection">
 
-</div>
+        </select>
+
+        <div class="floatGroup">
+            <a onclick="foodOverView.manageAfterChoiceSelect();"
+               class="iconButton mdi mdi-light mdi-19px btnSuccess mdi-shaker">Confirm Selection</a>
+        </div>
+    </div>

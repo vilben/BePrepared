@@ -9,11 +9,16 @@ class DisasterSituation {
         this.proteins = 0;
         this.users = 0;
 
-        this.getFoods();
-        this.getUsers();
-
         this.minCal = 1000;
 
+        this.getFoods();
+        
+    }
+
+    calculateValues(){
+        this.calcTotalValues();
+        this.calcTotalUsers();
+        this.calcDaysAvailable();
     }
 
     getFoods(){
@@ -26,7 +31,8 @@ class DisasterSituation {
                 return;
             } else {
                 this.calcTotalValues();
-            }         
+            }
+            this.getUsers();         
         });
     }
 
@@ -40,7 +46,8 @@ class DisasterSituation {
                 return;
             } else {
                 this.calcTotalUsers();
-            }       
+            }
+            this.calculateValues();       
         });
     }
 
@@ -65,6 +72,7 @@ class DisasterSituation {
     calcDaysAvailable(){
         
         this.daysAvailable = this.carbohydrates / (this.users * this.minCal) + 3;
+        $("#daysAvailable").html(this.daysAvailable);
     }
 
 }

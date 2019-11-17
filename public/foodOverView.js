@@ -3,7 +3,7 @@ class foodOverView {
         this.showList();
         this.setListeners(this);
         this.candidates = [];
-        this.quantity=0;
+        this.quantity = 0;
     }
 
     setListeners(obj) {
@@ -121,7 +121,7 @@ class foodOverView {
 
         function openSelectionDialog(candidates) {
             for (let i = 0; i < candidates.length; i++) {
-                $('#selection').append($('<option>', {
+                $("#selection").append($("<option>", {
                     value: i,
                     text: candidates[i].Name
                 }));
@@ -132,11 +132,11 @@ class foodOverView {
 
         }
 
-        openSelectionDialog(this.candidates)
+        openSelectionDialog(this.candidates);
 
     }
 
-    manageAfterChoiceSelect(){
+    manageAfterChoiceSelect() {
         $("#selection").css("display", "none");
 
         let value = $("#selection").val();
@@ -152,10 +152,10 @@ class foodOverView {
             if (filter.length < 1) {
                 foodList.push(foodEntry);
             } else {
-                filter[0].weight = parseInt(filter[0].weight)+parseInt(foodEntry.weight);
+                filter[0].weight = parseInt(filter[0].weight) + parseInt(foodEntry.weight);
             }
 
-            $.post("postFood", {"foodList": foodList});
+            $.post("postFood", { "foodList": foodList });
 
         });
 
@@ -169,19 +169,19 @@ class foodOverView {
 
             foodList.forEach(food => {
                 if (food.name === foodItem) {
-                    if (parseInt(food.weight) < parseInt(quantity)) {
+                    if (parseInt(food.weight) <= parseInt(quantity)) {
                         foodList = foodList.filter(food => food.name !== foodItem);
                     } else {
-                        food.weight = parseInt(food.weight)- parseInt(quantity);
+                        food.weight = parseInt(food.weight) - parseInt(quantity);
                     }
                 }
             });
 
-            $.post("postFood", {"foodList": foodList}).done(response => {
-                alert("i updated");
-            });
+            $.post("postFood", {"foodList": foodList});
+
         });
 
+        showFoodList();
     }
 
     readNutritionalValue() {

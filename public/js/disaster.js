@@ -124,7 +124,7 @@ class DisasterSituation {
                     currentCalories += caloriesAvailable;
                     foodNoLongerStorable.shift();
                     foodSortedByDaysLeft.shift();
-                    middleSpan.append($("<span class='entry'>" + "Eat " + Math.round(currentFood.weight) + " gramms of " + currentFood.name + " resulting in " + Math.round(caloriesAvailable) + "kcal</span>"))
+                    middleSpan.append($("<span class='entry'>" + "Eat " + Math.round(currentFood.weight) + " gramms of " + currentFood.name + " resulting in " + Math.round(caloriesAvailable) + " kcal</span>"))
                 } else {
                     var currentFood = foodSortedByDaysLeft[0];
 
@@ -140,11 +140,11 @@ class DisasterSituation {
                     var foodAmount = Math.round(caloriesMissing / caloriesPer100G * 100);
 
                     if (foodAmount < currentFood.weight){
-                        middleSpan.append($("<span class='entry'>" + "Eat " + Math.round(foodAmount) + " gramms of " + currentFood.name + " resulting in " + Math.round(foodAmount / 100 * caloriesPer100G) + "kcal</span>"))
+                        middleSpan.append($("<span class='entry'>" + "Eat " + Math.round(foodAmount) + " gramms of " + currentFood.name + " resulting in " + Math.round(foodAmount / 100 * caloriesPer100G) + " kcal</span>"))
                         foodSortedByDaysLeft[0].weight = Math.round(foodSortedByDaysLeft[0].weight - foodAmount);
                         currentCalories += Math.round(foodAmount / 100 * caloriesPer100G);
                     } else {
-                        middleSpan.append($("<span class='entry'>" + "Eat " +  Math.round(currentFood.weight) + " gramms of " + currentFood.name + " resulting in " + Math.round(foodAmount / 100 * caloriesPer100G) + "kcal</span>"))
+                        middleSpan.append($("<span class='entry'>" + "Eat " +  Math.round(currentFood.weight) + " gramms of " + currentFood.name + " resulting in " + Math.round(currentFood.weight / 100 * caloriesPer100G) + " kcal</span>"))
                         currentCalories += Math.round(currentFood.weight / 100 * caloriesPer100G);
                         foodSortedByDaysLeft.shift();
                     }

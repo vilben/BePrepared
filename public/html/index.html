@@ -25,6 +25,13 @@
             UserOverview = new UserOverview();
             foodOverView = new foodOverView();
         });
+
+        function toggleNavbar(){
+            $("#myNavbar").toggle("showNavbar");
+        }
+        function hideNavbar(){
+            $("#myNavbar").removeClass("showNavbar");
+        }
     </script>
     <style>
         a {
@@ -35,6 +42,9 @@
             text-decoration: none;
             color: white;
         }
+        .showNavbar{
+            display: block;
+        }
     </style>
 </head>
 
@@ -42,7 +52,7 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" onclick="toggleNavbar();">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>

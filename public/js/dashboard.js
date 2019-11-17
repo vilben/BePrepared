@@ -41,6 +41,7 @@ function showDisaster() {
 
 function setActive(activeTab) {
     $(".tabPoint").removeClass("active");
+    toggleNavbar();
 
     if (activeTab === "Dashboard") {
         $("#liDashboard").addClass("active");

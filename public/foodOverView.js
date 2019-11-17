@@ -150,7 +150,7 @@ class foodOverView {
             if (filter.length < 1) {
                 foodList.push(foodEntry);
             } else {
-                filter[0].weight += foodEntry.weight;
+                filter[0].weight = parseInt(filter[0].weight)+parseInt(foodEntry.weight);
             }
 
             $.post("postFood", {"foodList": foodList});
@@ -169,7 +169,7 @@ class foodOverView {
                     if (parseInt(food.weight) < parseInt(quantity)) {
                         foodList = foodList.filter(food => food.name !== foodItem);
                     } else {
-                        food.weight -= quantity;
+                        food.weight = parseInt(food.weight)- parseInt(quantity);
                     }
                 }
             });

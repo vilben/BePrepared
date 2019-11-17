@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"userList":[{"name":"Emilia","surName":"Chans","birth":"2019-11-12","gender":"w","id":"47245498"}]}
+=======
+{"userList":[{"name":"Emilia","surName":"Chans","birth":"2019-11-12","gender":"w","id":"47245498"},{"name":"Moritz","surName":"Schiesser","birth":"1992-06-07","gender":"w","id":"99821785"},{"name":"Benny Joe","surName":"Villiger","birth":"2019-11-07","gender":"m","id":"89407219"},{"name":"Simon","surName":"Noser","birth":"2019-11-07","gender":"m","id":"12084346"}]}
+>>>>>>> 6f2a92e42dbf587e881ed59a2b9ec96b4bdbec33

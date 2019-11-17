@@ -12,6 +12,7 @@ class foodOverView {
     }
 
     showList() {
+        $("#tablePlaceholder").html();
         $.get("getFood").done((response) => {
             console.log(response);
             this.generateFoodStockTable(response);
@@ -66,6 +67,7 @@ class foodOverView {
         this.hideAddFoodPanel();
 
         this.addFood(foodItem, quantity);
+        showFoodList();
     }
 
     removeFoodClick() {

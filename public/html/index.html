@@ -27,15 +27,33 @@
             foodOverView = new foodOverView();
             disasterSituationDashboard = new DisasterSituation();
         });
+
+        function toggleNavbar() {
+            $("#myNavbar").addClass("showNavbar");
+            $("#myNavbar").removeClass("hideNavbar");
+        }
+        function hideNavbar() {
+            $("#myNavbar").removeClass("showNavbar");
+            $("#myNavbar").addClass("hideNavbar");
+        }
     </script>
     <style>
         a {
             text-decoration: none;
             color: white;
         }
-        a:hover{
+
+        a:hover {
             text-decoration: none;
             color: white;
+        }
+
+        .showNavbar {
+            display: block;
+        }
+
+        .hideNavbar {
+            display: none;
         }
     </style>
 </head>
@@ -44,7 +62,8 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"
+                    onclick="toggleNavbar();">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -70,19 +89,19 @@
         </div>
     </nav>
 
-<div id="mainContent">
-    <h1 >BePrepared!</h1>
-    <p>You activated the BePrepared! disaster mode.<br/>
-        Enter your remaining food under Food List.<br/>
-        Enter the people you have to distribute it to under Users.<br/>
-        You will be able to see a disaster food rationing plan under Disaster situation.<br/>
-        You will also see a forecast of how many days you will survive.<br/>
-       </p>
-    <hr>
-    <h3>TIPPS</h3>
-    <p>Try to contact a rescue team and inform them about the time you can survive.<br/>
-        Move as little as possible to safe energy.<br/>
-        Try to keep warm.</p>
+    <div id="mainContent">
+        <h1>BePrepared!</h1>
+        <p>You activated the BePrepared! disaster mode.<br />
+            Enter your remaining food under Food List.<br />
+            Enter the people you have to distribute it to under Users.<br />
+            You will be able to see a disaster food rationing plan under Disaster situation.<br />
+            You will also see a forecast of how many days you will survive.<br />
+        </p>
+        <hr>
+        <h3>TIPPS</h3>
+        <p>Try to contact a rescue team and inform them about the time you can survive.<br />
+            Move as little as possible to safe energy.<br />
+            Try to keep warm.</p>
 
     <h3>KPI</h3>
         <p>
@@ -106,4 +125,5 @@
         <p>Copyright &copy; BePrepared! 2019</p>
     </footer>
 </body>
+
 </html>

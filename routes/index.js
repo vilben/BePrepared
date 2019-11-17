@@ -108,7 +108,17 @@ router.get("/test", (rey, res) =>{
         //Todo HACK
         let foodItemName = data.images[0]["classifiers"][0]["classes"][0]["class"];
 
-        res.send(foodItemName);
+        let foodItems = data.images[0]["classifiers"][0]["classes"];
+        let bestFoodItem = {class: 'non-food', score:0};
+        foodItems.forEach((foodItem)=>{
+            console.log(foodItem);
+            if(!bestFoodItem || foodItem.score){
+                bestFoodItem = foodItem;
+            }
+        });
+
+
+        res.send(bestFoodItem);
 
     });
 });
@@ -119,8 +129,14 @@ router.get('/checkFood', (req, res, next) => {
     foodRecognition.checkFood(pathToBanana).then((data) => {
         res.send(data);
 
-        //Todo HACK
         let foodItemName = data.images[0]["classifiers"][0]["classes"][0]["class"];
+        let foodItems = data.images[0]["classifiers"][0]["classes"];
+        foodItems.forEach((foodItem)=>{
+            console.log(foodItem);
+        });
+
+
+
 
         console.log(foodItemName);
     });

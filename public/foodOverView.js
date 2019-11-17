@@ -4,16 +4,14 @@ class foodOverView {
     }
 
     showList() {
-        let file;
         $.get("getFood").done((response) => {
             console.log(response);
-            this.readJsonFile(response);
+            this.generateFoodStockTable(response);
         });
 
     }
 
-    readJsonFile(json) {
-        let $foodList = $("#foodList");
+    generateFoodStockTable(json) {
 
         var foodList = json.foodList;
         console.log(foodList);
@@ -51,9 +49,36 @@ class foodOverView {
     }
 
     addFood(foodItem, quantity) {
-        // foodList.put(quantity, foodItem);
-        alert("Heya");
+
+        $.get("getFoodComposition").done((response) => {
+            console.log(response);
+            this.UpdateFoodStock(response, foodItem, quantity);
+        });
+
     }
+
+    UpdateFoodStock(foodCompositionList, foodItem, quantity) {
+
+        var candidates = [];
+
+        foodCompositionList.forEach(foodComposition => {
+            if (foodComposition.Name.includes(foodItem)) {
+                candidates.push(foodComposition);
+            }
+        });
+
+        function openSelectionDialog(candidates) {
+            return undefined;
+        }
+
+        var userChoice = openSelectionDialog(candidates);
+
+
+        var foodEntry = new food(userChoice.Name, userChoice["Carbohydrates, available (g)"], userChoice["Fat, total (g)"], userChoice["Protein (g)"])
+
+
+    }
+
 
     removeFood() {
         // foodList.remove()
@@ -62,7 +87,6 @@ class foodOverView {
     readNutritionalValue() {
         //TODO
     }
-
 }
 
 $("document").ready(function () {

@@ -34,7 +34,12 @@ router.get('/foodOverView', function(req, res, next) {
 });
 
 router.get('/getFood', function(req, res, next) {
-    res.sendFile(path.join(publicRoute + '/foodDummy.json'));
+    res.sendFile(path.join(publicRoute + '/foodStock.json'));
+    // res.render('index', { title: 'Express' });
+});
+
+router.get('/getFoodComposition', function(req, res, next) {
+    res.sendFile(path.join(publicRoute + '/foodComposition.json'));
     // res.render('index', { title: 'Express' });
 });
 

@@ -121,14 +121,72 @@ $(document).ready(() => {
                             .done((resp) => {
                                 $("#flexBox").append("<div id='innerFlexBox' class='flexBoxColumn'>" +
                                     "</div>");
+
+                                console.log(resp);
+                                $.get("getFoodComposition").done((foodCompositionList) => {
+                                    let candidates = [];
+
+                                    let $selection = $("select");
+
+                                    $("#innerFlexBox").append($selection);
+
+                                    foodCompositionList.forEach(foodComposition => {
+                                        if (foodComposition.Name.toUpperCase().includes(resp.toUpperCase())) {
+                                            candidates.push(foodComposition);
+                                        }
+                                    });
+
+                                    if(candidates.length < 1){
+                                        candidates.push({Name : resp, Category: "none"});
+                                    }
+
+                                    for (let i = 0; i < candidates.length; i++) {
+                                        console.log("yeeet");
+                                        $selection.append($('<option>', {
+                                            value: i,
+                                            text: candidates[i].Name
+                                        }));
+                                    }
+
+                                    // $("#addSelection").css("display", "block");
+                                    initFloats();
+
+                                    let $quantityInput = $("<input type='text'>");
+                                    $("#innerFlexBox").append($quantityInput);
+
+
+                                    let button = $("<input type='button' value='add'>");
+                                    $("#innerFlexBox").append(button);
+
+                                    button.click(() => {
+                                        let value = $selection.val();
+                                        var userChoice = candidates[value];
+
+                                        var foodEntry = new food(userChoice.Name, userChoice["Carbohydrates, available (g)"], userChoice["Fat, total (g)"], userChoice["Protein (g)"], $quantityInput.val(), userChoice["Category"]);
+                                        $.get("getFood").done((foodStock) => {
+
+                                                let foodList = foodStock.foodList;
+
+                                                let filter = foodList.filter(food => food.name === foodEntry.name);
+                                                if (filter.length < 1) {
+                                                    foodList.push(foodEntry);
+                                                } else {
+                                                    filter[0].weight += foodEntry.weight;
+                                                }
+
+                                                $.post("postFood", {"foodList": foodList});
+
+                                            }
+                                        );
+
+
+                                    });
+
+                                });
                             });
 
 
-                        resp.forEach((element)=>{
-                            $("#innerFlexBox").append("<div>"+element+"</div>");
-                            });
-
-
+                        $("#innerFlexBox").append("<div>" + element + "</div>");
                     });
 
 

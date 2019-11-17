@@ -104,12 +104,12 @@ router.get("/test", (rey, res) =>{
     var bitmap = fs.createReadStream(file);
 
     foodRecognition.checkFood(bitmap).then((data) => {
-        res.send(data);
 
         //Todo HACK
         let foodItemName = data.images[0]["classifiers"][0]["classes"][0]["class"];
 
-        console.log(foodItemName);
+        res.send(foodItemName);
+
     });
 });
 

@@ -2,6 +2,8 @@ class foodOverView {
     constructor() {
         this.showList();
         this.setListeners(this);
+        this.candidates = [];
+        this.quantity=0;
     }
 
     setListeners(obj) {
@@ -107,21 +109,38 @@ class foodOverView {
 
     UpdateFoodStock(foodCompositionList, foodItem, quantity) {
 
-        var candidates = [];
+        this.quantity = quantity;
 
         foodCompositionList.forEach(foodComposition => {
             if (foodComposition.Name.toUpperCase().includes(foodItem.toUpperCase())) {
-                candidates.push(foodComposition);
+                this.candidates.push(foodComposition);
             }
         });
 
         function openSelectionDialog(candidates) {
-            return candidates[0];
+            for (let i = 0; i < candidates.length; i++) {
+                $('#selection').append($('<option>', {
+                    value: i,
+                    text: candidates[i].Name
+                }));
+            }
+
+            $("#addSelection").css("display", "block");
+            initFloats();
+
         }
 
-        var userChoice = openSelectionDialog(candidates);
+        openSelectionDialog(this.candidates)
 
-        var foodEntry = new food(userChoice.Name, userChoice["Carbohydrates, available (g)"], userChoice["Fat, total (g)"], userChoice["Protein (g)"], quantity);
+    }
+
+    manageAfterChoiceSelect(){
+        $("#selection").css("display", "none");
+
+        let value = $("#selection").val();
+        var userChoice = this.candidates[value];
+
+        var foodEntry = new food(userChoice.Name, userChoice["Carbohydrates, available (g)"], userChoice["Fat, total (g)"], userChoice["Protein (g)"], this.quantity, userChoice["Category"]);
 
         $.get("getFood").done((foodStock) => {
 
@@ -134,9 +153,7 @@ class foodOverView {
                 filter[0].weight += foodEntry.weight;
             }
 
-            $.post("postFood", {"foodList": foodList}).done(response => {
-                alert("i updated");
-            });
+            $.post("postFood", {"foodList": foodList});
 
         });
 

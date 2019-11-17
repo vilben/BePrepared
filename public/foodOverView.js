@@ -155,7 +155,7 @@ class foodOverView {
                 filter[0].weight = parseInt(filter[0].weight) + parseInt(foodEntry.weight);
             }
 
-            $.post("postFood", {"foodList": foodList});
+            $.post("postFood", { "foodList": foodList });
 
         });
 
@@ -181,6 +181,7 @@ class foodOverView {
 
         });
 
+        showFoodList();
     }
 
     readNutritionalValue() {

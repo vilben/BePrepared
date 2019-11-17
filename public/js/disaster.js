@@ -21,6 +21,7 @@ class DisasterSituation {
         this.calcCalories();
         this.calcDaysAvailable();
         this.calcAvailablePerDay();
+        this.calcDiet();
     }
 
     getFoods(){
@@ -90,19 +91,21 @@ class DisasterSituation {
         $("#CarbsPerDay").html("Carbohydrates available per day: " + availableCarbsPerDay);
         $("#ProteinsPerDay").html("Protein available per day: " + availableProteinPerDay);
         $("#FatPerDay").html("Fat available per day: " + availableFatPerDay);
-
     }
 
 
     calcDiet(){
-
+        var outerSpan = $("<span>");
         var html = ""
         var foodSortedByDaysLeft = this.foodList.sort((a,b) => (parseInt(a.daysLeft) > parseInt(b.daysLeft)) ? 1 : ((parseInt(b.daysLeft) > parseInt(a.daysLeft)) ? -1 : 0)); 
         var maxDays = Math.round(this.daysAvailableCalories);
         var caloriesPerDay = this.minCal * this.users;
         var currentCalories = 0
         for(var i = 1; i <= maxDays; i++){
-            html = html + "Day: " + i + "<br>";
+            var middleSpan = $("<span>");
+            middleSpan.append("<br />");
+            middleSpan.append($("<span class='label'>" + "Day: " + i + "<br>" + "</span>"));
+            //html = html + "Day: " + i + "<br>";
             var foodNoLongerStorable = foodSortedByDaysLeft.filter(function( obj ) {
                 return obj.daysLeft <= i;
             })
@@ -121,8 +124,7 @@ class DisasterSituation {
                     currentCalories += caloriesAvailable;
                     foodNoLongerStorable.shift();
                     foodSortedByDaysLeft.shift();
-                    html = html + "Eat: " + currentFood.name + " how many: " + currentFood.weight + " resulting in " + caloriesAvailable + "<br>"
-                    console.log("Eat: " + currentFood.name + " how many: " + currentFood.weight + " resulting in " + caloriesAvailable)
+                    middleSpan.append($("<span class='entry'>" + "Eat " + Math.round(currentFood.weight) + " gramms of " + currentFood.name + " resulting in " + Math.round(caloriesAvailable) + "kcal</span>"))
                 } else {
                     var currentFood = foodSortedByDaysLeft[0];
 
@@ -138,23 +140,21 @@ class DisasterSituation {
                     var foodAmount = Math.round(caloriesMissing / caloriesPer100G * 100);
 
                     if (foodAmount < currentFood.weight){
-
-                        html = html + "Eat: " + currentFood.name + " how many: " + foodAmount + " resulting in " + foodAmount / 100 * caloriesPer100G + "<br>"
-                        console.log("Eat: " + currentFood.name + " how many: " + foodAmount + " resulting in " + foodAmount / 100 * caloriesPer100G)
+                        middleSpan.append($("<span class='entry'>" + "Eat " + Math.round(foodAmount) + " gramms of " + currentFood.name + " resulting in " + Math.round(foodAmount / 100 * caloriesPer100G) + "kcal</span>"))
                         foodSortedByDaysLeft[0].weight = Math.round(foodSortedByDaysLeft[0].weight - foodAmount);
-
                         currentCalories += Math.round(foodAmount / 100 * caloriesPer100G);
                     } else {
-                        html = html + "Eat: " + currentFood.name + " how many: " + currentFood.weight + " resulting in " + currentFood.weight / 100 * caloriesPer100G + "<br>"
-                        console.log("Eat: " + currentFood.name + " how many: " + currentFood.weight + " resulting in " + currentFood.weight / 100 * caloriesPer100G)
+                        middleSpan.append($("<span class='entry'>" + "Eat " +  Math.round(currentFood.weight) + " gramms of " + currentFood.name + " resulting in " + Math.round(foodAmount / 100 * caloriesPer100G) + "kcal</span>"))
                         currentCalories += Math.round(currentFood.weight / 100 * caloriesPer100G);
-
                         foodSortedByDaysLeft.shift();
                     }
                 }
             }
+
+            outerSpan.append(middleSpan);
         }
 
-        $("#DietPlan").html(html);
+        //$("#DietPlan").html(html);
+        $("#DietPlan").html(outerSpan);
     }
 }

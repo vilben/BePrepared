@@ -150,6 +150,12 @@ body {
   float: left;
 }
 
+.entry {
+  margin-left: 15px;
+  text-overflow: ellipsis;
+  display: block;
+}
+
 .label {
   width: auto;
 }
@@ -569,6 +575,7 @@ body {
   width: 95%;
   margin: 2.5%;
   padding: 5px;
+  margin-bottom: 60px;
 }
 
 footer {
@@ -712,7 +719,7 @@ footer {
 
 /* The Close Button */
 .close {
-  color: #aaa;
+  color: black;
   float: right;
   font-size: 28px;
   font-weight: bold;

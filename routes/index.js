@@ -27,6 +27,11 @@ router.get('/', function (req, res, next) {
 router.get('/dashboard', function (req, res, next) {
     res.sendFile(path.join(publicRoute + '/html/dashboard.html'));
 });
+
+router.get('/disaster', function (req, res, next) {
+    res.sendFile(path.join(publicRoute + '/html/disaster.html'));
+});
+
 router.get('/userOverview', function (req, res, next) {
     res.sendFile(path.join(publicRoute + '/html/userOverview.html'));
     // res.render('index', { title: 'Express' });

@@ -33,8 +33,8 @@ function showUsers() {
 function showDisaster() {
     let $mainContent = $('#mainContent');
     let baseUrl = window.location.origin;   
-    setActive("DisasterSitutation");
-    $.get(baseUrl + "/userOverview").done((response) => {
+    setActive("DisasterSituation");
+    $.get(baseUrl + "/disaster").done((response) => {
         $mainContent.replaceWith(response);
     })
 };

@@ -74,8 +74,6 @@ router.post('/getUsers', function (req, res) {
 });
 
 router.post('/savePicture', (req, res) => {
-
-
     function Base64DecodeUrl(str){
         str = (str + '===').slice(0, str.length + (str.length % 4));
         return str.replace(/-/g, '+').replace(/_/g, '/');
@@ -89,6 +87,7 @@ router.post('/savePicture', (req, res) => {
             console.log(err);
         } else {
             console.log('File created');
+            res.send("success");
         }
     });
 });
@@ -112,7 +111,7 @@ router.get("/test", (rey, res) =>{
 
         console.log(foodItemName);
     });
-})
+});
 
 router.get('/checkFood', (req, res, next) => {
     let pathToBanana = "http://www.pngplay.com/wp-content/uploads/1/Banana-PNG-Royalty-Free.png";

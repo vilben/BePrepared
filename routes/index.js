@@ -48,12 +48,12 @@ router.get('/getFoodComposition', function (req, res, next) {
 });
 
 router.get('/getUsers', function (req, res, next) {
-    res.sendFile(path.join(publicRoute + '/userDummy.json'));
+    res.sendFile(path.join(publicRoute + '/userDB.json'));
     // res.render('index', { title: 'Express' });
 });
 
 router.post('/getUsers', function (req, res) {
-    filePath = path.join(publicRoute + '/userDummy.json');
+    filePath = path.join(publicRoute + '/userDB.json');
     fs.writeFile(filePath, JSON.stringify(req.body), function () {
         res.end();
     });

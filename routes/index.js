@@ -6,6 +6,9 @@ const projectRoot = path.resolve(__dirname, '../');
 const publicRoute = path.resolve(projectRoot + '/public');
 const fs = require('fs');
 const bodyParser = require('body-parser');
+const Camera = require(publicRoute + '/camera/Camera');
+
+let camera = new Camera();
 
 app.use('public', express.static(publicRoute));
 app.use('/', express.static(projectRoot));
@@ -48,6 +51,11 @@ router.post('/getUsers', function(req, res) {
     fs.writeFile(filePath, JSON.stringify(req.body), function () {
         res.end();
     });
+});
+
+
+router.get('/takePicture', (req, res)=>{
+    res.send(camera.takeShot());
 });
 
 router.get('/checkFood', (req, res, next) =>{

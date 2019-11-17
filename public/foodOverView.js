@@ -74,7 +74,7 @@ class foodOverView {
         var userChoice = openSelectionDialog(candidates);
 
 
-        var foodEntry = new food(userChoice.Name, userChoice["Carbohydrates, available (g)"], userChoice["Fat, total (g)"], userChoice["Protein (g)"])
+        var foodEntry = new food(userChoice.Name, userChoice["Carbohydrates, available (g)"], userChoice["Fat, total (g)"], userChoice["Protein (g)"], quantity)
 
 
     }

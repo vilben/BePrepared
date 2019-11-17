@@ -531,6 +531,7 @@ body {
     opacity: 0.7;
 }
 
+
 @include createButtonColor($darkBaseColor, btnNeutral);
 @include createButtonColor($baseGreen, btnSuccess);
 @include createButtonColor($baseOrange, btnWarning);
@@ -574,14 +575,19 @@ body {
         }
     }
 
-    /*&:hover {
-        &:before {
-            -webkit-animation: mdi-spin 0.4s 1 linear;
-            -moz-animation: mdi-spin 0.4s 1 linear;
-            -o-animation: mdi-spin 0.4s 1 linear;
-            animation: mdi-spin 0.4s 1 linear;
-        }
-    }*/
+
+    &:hover{
+        text-decoration: none;
+    }
+
+    // &:hover {
+    //     &:before {
+    //         -webkit-animation: mdi-spin 0.4s 1 linear;
+    //         -moz-animation: mdi-spin 0.4s 1 linear;
+    //         -o-animation: mdi-spin 0.4s 1 linear;
+    //         animation: mdi-spin 0.4s 1 linear;
+    //     }
+    // }
 }
 
 #mainContent {

@@ -19,35 +19,35 @@ class food{
         if (category.includes("Alcohol")) {
             return 1000;
         } else if (category.includes("Cereal")) {
-            return 7;
+            return 30;
         } else if (category.includes("Eggs")) {
-            return 2;
+            return 7;
         } else if (category.includes("Fat")) {
             return 50;
         } else if (category.includes("Fish")) {
-            return 3;
+            return 10;
         } else if (category.includes("Dried fruit")) {
             return 100;
         } else if (category.includes("Fresh fruit")) {
-            return 10;
+            return 14;
         } else if (category.includes("Meat")) {
-            return 5;
+            return 14;
         } else if (category.includes("dairy")) {
-            return 5;
+            return 7;
         } else if (category.includes("beverages")) {
             return 30;
         } else if (category.includes("Nuts")) {
             return 100;
         } else if (category.includes("Sweets")) {
-            return 50;
+            return 90;
         } else if (category.includes("snacks")) {
-            return 40;
+            return 90;
         } else if (category.includes("Fresh vegetable")) {
-            return 10;
+            return 20;
         } else if (category.includes("Dry vegetable")) {
-            return 50;
+            return 60;
         } else {
-            return 10;
+            return 60;
         }
     }
 

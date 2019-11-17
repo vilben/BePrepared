@@ -1,6 +1,6 @@
 # BePrepared 
 
-##Installation
+## Installation
 `npm install`
-##Run
+## Run
 `node app.js`

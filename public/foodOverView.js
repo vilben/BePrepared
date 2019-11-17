@@ -53,21 +53,47 @@ class foodOverView {
 
     }
 
-    addFoodClick(){
+    addFoodClick() {
         this.showAddFoodPanel();
         initFloats();
     }
 
-    saveFoodClick(){
+    saveFoodClick() {
+        let foodItem = $("#userInputFoodName").val();
+        let quantity = $("#userInputFoodAmount").val();
         this.hideAddFoodPanel();
+
+        this.addFood(foodItem, quantity);
     }
 
-    hideAddFoodPanel(){
+    removeFoodClick() {
+        this.showRemoveFoodPanel();
+        initFloats();
+    }
+
+    removeSaveFoodClick() {
+        this.hideRemoveFoodPanel();
+
+        let foodItem = $("#userInputRemoveFoodName").val();
+        let quantity = $("#userInputRemoveFoodAmount").val();
+
+        this.removeFood(foodItem, quantity);
+    }
+
+    hideAddFoodPanel() {
         $("#addFoodPanel").css("display", "none");
     }
-    
-    showAddFoodPanel(){
+
+    showAddFoodPanel() {
         $("#addFoodPanel").css("display", "block");
+    }
+
+    hideRemoveFoodPanel() {
+        $("#removeFoodPanel").css("display", "none");
+    }
+
+    showRemoveFoodPanel() {
+        $("#removeFoodPanel").css("display", "block");
     }
 
     addFood(foodItem, quantity) {
@@ -95,7 +121,6 @@ class foodOverView {
 
         var userChoice = openSelectionDialog(candidates);
 
-
         var foodEntry = new food(userChoice.Name, userChoice["Carbohydrates, available (g)"], userChoice["Fat, total (g)"], userChoice["Protein (g)"], quantity);
 
         $.get("getFood").done((foodStock) => {
@@ -109,17 +134,33 @@ class foodOverView {
                 filter[0].weight += foodEntry.weight;
             }
 
-            $.post("postFood", {"foodList" : foodList}).done(response => {
+            $.post("postFood", {"foodList": foodList}).done(response => {
                 alert("i updated");
-            })
+            });
 
         });
 
-
     }
 
+    removeFood(foodItem, quantity) {
+        $.get("getFood").done((foodStock) => {
 
-    removeFood() {
+            let foodList = foodStock.foodList;
+
+            foodList.forEach(food => {
+                if (food.name === foodItem) {
+                    if (food.weight < quantity) {
+                        foodList = foodList.filter(food.name !== foodItem);
+                    } else {
+                        food.weight -= quantity;
+                    }
+                }
+            });
+
+            $.post("postFood", {"foodList": foodList}).done(response => {
+                alert("i updated");
+            });
+        });
 
     }
 

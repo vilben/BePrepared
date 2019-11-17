@@ -1,1 +1,11 @@
-{"userList":[{"name":"Moritz","surName":"Schiesser","birth":"1992-06-07","gender":"w","id":"99821785"}]}
+{
+    "userList": [
+        {
+            "name": "Moritz",
+            "surName": "Schiesser",
+            "birth": "1992-06-07",
+            "gender": "w",
+            "id": "99821785"
+        }
+    ]
+}

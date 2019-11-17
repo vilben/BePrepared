@@ -12,6 +12,8 @@ class DisasterSituation {
         this.getFoods();
         this.getUsers();
 
+        this.minCal = 1000;
+
     }
 
     getFoods(){
@@ -45,9 +47,9 @@ class DisasterSituation {
     calcTotalValues(){
 
         this.foodList.forEach(food => {
-           this.carbohydrates += food.stock * food.carbohydrates;
-           this.fat += food.stock * food.fat;
-           this.proteins += food.stock * food.proteins;
+           this.carbohydrates += food.weight / 100 * food.carbohydrates;
+           this.fat += food.weight / 100 * food.fat;
+           this.proteins += food.weight / 100 * food.proteins;
         });
         
     }
@@ -58,6 +60,11 @@ class DisasterSituation {
             this.users++;
          });
 
+    }
+
+    calcDaysAvailable(){
+        
+        this.daysAvailable = this.carbohydrates / (this.users * this.minCal) + 3;
     }
 
 }

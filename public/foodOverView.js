@@ -5,9 +5,6 @@ class foodOverView {
     }
 
     setListeners(obj) {
-        $("#addFoodButton").on("click", function () {
-            obj.addFood("banana", 1500);
-        })
 
         //  $("#addFoodButton").setAttribute('onclick',"console.log('hello')");
     }
@@ -54,6 +51,23 @@ class foodOverView {
         });
         $("#tablePlaceholder").append(table);
 
+    }
+
+    addFoodClick(){
+        this.showAddFoodPanel();
+        initFloats();
+    }
+
+    saveFoodClick(){
+        this.hideAddFoodPanel();
+    }
+
+    hideAddFoodPanel(){
+        $("#addFoodPanel").css("display", "none");
+    }
+    
+    showAddFoodPanel(){
+        $("#addFoodPanel").css("display", "block");
     }
 
     addFood(foodItem, quantity) {

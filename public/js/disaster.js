@@ -78,14 +78,14 @@ class DisasterSituation {
     }
 
     calcDaysAvailable(){
-        this.daysAvailableCalories = (this.calories / (this.users * this.minCal));
+        this.daysAvailableCalories = Math.round((this.calories / (this.users * this.minCal)));
         $("#daysAvailable").html("Foods for days..: " + this.daysAvailableCalories);
     }
 
     calcAvailablePerDay(){
-        var availableCarbsPerDay = this.carbohydrates / this.daysAvailableCalories / this.users;
-        var availableFatPerDay = this.fat / this.daysAvailableCalories / this.users;
-        var availableProteinPerDay = this.proteins / this.daysAvailableCalories / this.users;
+        var availableCarbsPerDay = Math.round(this.carbohydrates / this.daysAvailableCalories / this.users);
+        var availableFatPerDay = Math.round(this.fat / this.daysAvailableCalories / this.users);
+        var availableProteinPerDay = Math.round(this.proteins / this.daysAvailableCalories / this.users);
 
         $("#CarbsPerDay").html("Carbohydrates available per day: " + availableCarbsPerDay);
         $("#ProteinsPerDay").html("Protein available per day: " + availableProteinPerDay);
@@ -109,8 +109,6 @@ class DisasterSituation {
             currentCalories = 0;
             while (currentCalories < (caloriesPerDay - 5) && foodSortedByDaysLeft.length > 0){
 
-                console.log(currentCalories)
-                console.log(caloriesPerDay)
                 if(foodNoLongerStorable.length != 0){
                     var currentFood = foodNoLongerStorable[0];
                     var caloriesPer100G = currentFood.carbohydrates * 4;

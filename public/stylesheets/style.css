@@ -66,6 +66,7 @@ body {
   transition: all 0.1s ease-in-out;
   color: rgba(81, 90, 90, 0.76);
   pointer-events: none;
+  background-image: linear-gradient(white 9px, transparent 7px);
 }
 .floatLabel.outset {
   font-weight: bold;
@@ -549,14 +550,6 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  /*&:hover {
-      &:before {
-          -webkit-animation: mdi-spin 0.4s 1 linear;
-          -moz-animation: mdi-spin 0.4s 1 linear;
-          -o-animation: mdi-spin 0.4s 1 linear;
-          animation: mdi-spin 0.4s 1 linear;
-      }
-  }*/
 }
 .iconButton:disabled {
   border: 1px solid rgba(0, 0, 0, 0.15);
@@ -565,6 +558,9 @@ body {
 }
 .iconButton:disabled .mdi-light {
   color: gray;
+}
+.iconButton:hover {
+  text-decoration: none;
 }
 
 #mainContent {

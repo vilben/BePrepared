@@ -95,4 +95,22 @@ class DisasterSituation {
 
     }
 
+    calcDiet(){
+
+        var foodSortedByDaysLeft = this.foodList.sort((a,b) => (parseInt(a.daysLeft) > parseInt(b.daysLeft)) ? 1 : ((parseInt(b.daysLeft) > parseInt(a.daysLeft)) ? -1 : 0)); 
+
+        var foodNextDay =  foodSortedByDaysLeft.filter(function( obj ) {
+            return obj.daysLeft <= 1;
+        });
+        var foodNext3Days =  foodSortedByDaysLeft.filter(function( obj ) {
+            return obj.daysLeft > 1 && obj.daysLeft <= 3;
+        });
+        var foodNext7Days =  foodSortedByDaysLeft.filter(function( obj ) {
+            return obj.daysLeft > 3 && obj.daysLeft <= 7;
+        });
+        var foodNext14Days =  foodSortedByDaysLeft.filter(function( obj ) {
+            return obj.daysLeft > 7 && obj.daysLeft <= 14;
+        });
+
+    }
 }
